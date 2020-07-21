@@ -247,3 +247,7 @@ As a user,
   * Uses event delegation correctly on dynamic elements for deleting, checking tasks off, and marking a to-do urgent
 * **2:** Application correctly implements data model for the `Idea` class including all required methods
 * **1:** Crafts JS according to the [Turing JS Style Guide](https://github.com/turingschool-examples/javascript/tree/master/es5)
+
+@kathrynljackson
+@taylorjohnson141
+@aemcdonald
