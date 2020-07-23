@@ -56,7 +56,7 @@ body {
   font: 20px 'Open Sans', light;
   color:#E9E9F3;
   background-color: #353567;
-  border: 1px solid #353567;
+  border: 1px solid #5356A4;
   max-width: 1000px;
   width: 100%;
   padding: 8px 0 8px 0;
@@ -144,6 +144,7 @@ body {
 .search-bar img {
   border: none;
   background-color: #353567;
+  border: 1px solid #353567;
   /* fixed the color */
   padding: 1%;
   align-self: center;
@@ -154,7 +155,7 @@ body {
 
 .search-bar {
   display: flex;
-  border: 1px solid #5656A4;
+  border: 2px solid #5356A4;
   border-radius: 3px;
   margin: auto;
   background-color: #353567;
@@ -196,9 +197,6 @@ body {
   /* kj-now the form is centered in desktop mode */
 }
 
-.idea-cards {
-  flex-grow: 3;
-}
 
 textarea {
   resize: none;
@@ -206,7 +204,7 @@ textarea {
 }
 
 .title-input {
-  border:1px solid #353567;
+  border: 2px solid #5356A4;
   background-color: #EAEAF4;
   border-radius: 3px;
   vertical-align: text-top;
@@ -218,7 +216,7 @@ textarea {
 }
 
 .body-input {
-  border: 1px solid #353567;
+  border: 2px solid #5356A4;
   background-color: #E9E9F3;
   border-radius: 3px;
   padding-top: 1px;
@@ -231,15 +229,35 @@ textarea {
   display: none;
 }
 
+.idea-cards-main-area {
+  /* flex-grow: 3; */
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  justify-items: center;
+  width: 100%;
+  column-gap:
+
+  /* flex-wrap: wrap; */
+  /* padding: 1%; */
+  min-width: 300px;
+}
+
+
 .idea-cards div {
   margin: 5%;
   color: #1F1F3D;
   font: 17px "Open Sans", Light;
   border: 2px solid #353567;
-  max-width:300px;
-
-  /* kj-need to check width of comment box */
+  max-width: inherit;
 }
+
+/* .hero-profiles {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px;
+    min-width: 300px;
+} */
 
 .idea-card-top {
   background-color: #1F1F3D;
@@ -250,15 +268,17 @@ textarea {
 }
 
 .idea-card-title {
+  color: #1F1F3D;
   background-color: #FFFFFF;
   font: "Open Sans";
   font-weight: bold;
   padding-top: 3%;
   padding-left: 4%;
- border-top: 2px solid #353567;
+   border-top: 2px solid #353567;
 }
 
 .idea-card-text {
+  color: #1F1F3D;
   background-color: #FFFFFF;
   border-bottom: 2px solid #353567;
   padding: 4%;
