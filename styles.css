@@ -24,7 +24,7 @@ body {
 }
 
 .purple-2 {
-  color: 1F1F3D;
+  color: #1F1F3D;
   background: #A9AAD2;
 }
 
@@ -32,7 +32,7 @@ body {
   background: #5356A4;
 }
 
-.purple-4 {
+.menu {
   color: #E9E9F3;
   background: #1F1F3D;;
 }
@@ -120,19 +120,23 @@ body {
   flex-direction: column;
   font: 20px 'Open Sans', light;
   color: #1F1F3D;
-  justify-content: center;
+  }
+
+  .ideas div {
+    margin-left: auto;
+    margin-right: auto;
   }
 
 
-
 .idea-form {
-  flex-grow: 2;
+  flex-grow: 1;
   padding: 15px;
 }
 
 .idea-form div {
-  margin: auto;
-  flex: 1;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  max-width: 400px;
   /* kj-now the form is centered in desktop mode */
 }
 
@@ -166,11 +170,7 @@ textarea {
   max-width:400px;
 }
 
-.idea-form div {
-  margin-top: 5%;
-  margin-bottom: 5%;
-  max-width: 400px;
-}
+
 
 .idea-cards div {
   margin: 5%;
@@ -179,11 +179,6 @@ textarea {
   border: 2px solid #353567;
   max-width: 300px;
   /* kj-need to check width of comment box */
-}
-
-.idea-cards section {
-  justify-content: space-between;
-  /* need to spread the cards out seperately */
 }
 
 .idea-card-top {
