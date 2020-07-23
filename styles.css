@@ -44,6 +44,8 @@ body {
   border: 1px solid #353567;
   max-width: 1000px;
   width: 100%;
+  padding: 8px 0 8px 0;
+
 }
 
 .title {
@@ -90,7 +92,7 @@ body {
   color: #E9E9F3;
   background-color: #353567;
   border: 1% solid #5356A4;
-  max-width: 300px;
+  max-width: 450px;
   font: 15px;
   /* kj-can't change font for some reason */
 }
@@ -100,7 +102,7 @@ body {
    color: #BFBFDD;
    border: none;
    width: 90%;
-   height: 40px;
+   height: auto;
    align-content: flex-end;
    font-size: 15px;
    padding-left: 2%;
@@ -159,7 +161,7 @@ body {
 .idea-form div {
   margin-top: 5%;
   margin-bottom: 5%;
-  max-width: 400px;
+  max-width: 450px;
   /* kj-now the form is centered in desktop mode */
 }
 
@@ -179,7 +181,7 @@ textarea {
   vertical-align: text-top;
   display: flex;
   width: 100% ;
-  max-width: 400px;
+  max-width: 450px;
   height: 40px;
 }
 
@@ -190,7 +192,7 @@ textarea {
   padding-top: 1px;
   width: 100%;
   height: 80px;
-  max-width: 400px;
+  max-width: 450px;
 }
 
 .hide{
@@ -202,7 +204,8 @@ textarea {
   color: #1F1F3D;
   font: 17px "Open Sans", Light;
   border: 2px solid #353567;
-  max-width: 300px;
+  max-width:300px;
+
   /* kj-need to check width of comment box */
 }
 
@@ -241,6 +244,12 @@ textarea {
 @media only screen and (max-width: 400px) {
   body {
     flex-direction: column;
+  }
+  .idea-cards div {
+
+    max-width:450px;
+
+    /* kj-need to check width of comment box */
   }
 
   .header-text {
