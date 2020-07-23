@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 /*=== Reset ===*/
 
 html, body, h1, h2, h3, h4, h5, h6, p {
@@ -20,6 +24,7 @@ body {
 }
 
 .purple-2 {
+  color: 1F1F3D;
   background: #A9AAD2;
 }
 
@@ -28,7 +33,24 @@ body {
 }
 
 .purple-4 {
+  color: #E9E9F3;
   background: #1F1F3D;;
+}
+
+.save-button {
+  font: 20px 'Open Sans', light;
+  color:#E9E9F3;
+  background-color: #5356A4;
+  border: 1px solid #353567;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.title {
+  font: bold 18px 'Open Sans', light;
+  color: #1F1F3D;
+  margin-top: 1%;
+  margin-bottom: 1.5%;
 }
 
 
@@ -41,8 +63,15 @@ body {
   padding: 20px;
 }
 
-.body-text {
-  font: 'Open Sans' light;
+.ideas {
+  font: 20px 'Open Sans', light;
+  color: 1F1F3D;
+}
+
+.body {
+  font: bold 18px 'Open Sans', light;
+  margin-top: 1%;
+  margin-bottom: 1.5%;
 }
 
 
@@ -53,7 +82,32 @@ body {
   width: 380px;
 }
 
+.filter-ideas {
+  display: hidden;
+}
+
+.show-ideas-button{
+  display: hidden;
+}
+
+.search-ideas {
+  background-color: #E9E9F3;
+  color: #BFBFDD;
+  border: solid 1px #353567;
+  width: 100%;
+  height: 40px;
+  border-radius: 3px;
+}
+
 /*=== main section ===*/
+
+.header-text {
+
+}
+
+.hidden {
+  display: none;
+}
 
 .ideas {
   display: flex;
@@ -63,14 +117,81 @@ body {
 
 .idea-form {
   flex-grow: 2;
+  padding: 15px;
 }
 
 .idea-cards {
   flex-grow: 3;
 }
 
-/*=== media queries ===*/
+textarea {
+  resize: none;
+  border: 2px solid #353567;
+}
 
+.title-input {
+  border:1px solid #353567;
+  background-color: #EAEAF4;
+  border-radius: 3px;
+  vertical-align: text-top;
+  display: flex;
+  width: 100% ;
+  max-width: 400px;
+  height: 40px;
+}
+
+.body-input {
+  border: 1px solid #353567;
+  background-color: #E9E9F3;
+  border-radius: 3px;
+  padding-top: 1px;
+  width: 100%;
+  height:80px;
+  max-width:400px;
+}
+
+.idea-form div {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  max-width: 400px;
+}
+
+.idea-cards div {
+  margin: 5%;
+  color: #1F1F3D;
+  font: 17px "Open Sans", Light;
+  border: 2px solid #353567;
+}
+
+.idea-card-top {
+  background-color: #1F1F3D;
+  color:red;
+  padding: 1%;
+}
+
+.idea-card-title {
+  background-color: #FFFFFF;
+  font: "Open Sans";
+  font-weight: bold;
+  padding-top: 3%;
+  padding-left: 4%;
+ border-top: 2px solid #353567;
+}
+
+.idea-card-text {
+  background-color: #FFFFFF;
+  border-bottom: 2px solid #353567;
+  margins: 2%;
+  padding: 4%;
+
+}
+.idea-card-comment {
+  background-color: #5356A4;
+  color: #FFFFFF;
+  padding: 2%;
+}
+
+/*=== media queries ===*/
 @media only screen and (max-width: 400px) {
   body {
     flex-direction: column;
@@ -80,6 +201,10 @@ body {
     font-size: 18px;
     padding: 10px;
   }
+
+  .hidden {
+  display: inline-block !important;
+}
 
   .menu {
     height: 40px;
