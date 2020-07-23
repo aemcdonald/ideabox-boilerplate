@@ -24,7 +24,7 @@ body {
 }
 
 .purple-2 {
-  color: 1F1F3D;
+  color: #1F1F3D;
   background: #A9AAD2;
 }
 
@@ -32,7 +32,7 @@ body {
   background: #5356A4;
 }
 
-.purple-4 {
+.menu {
   color: #E9E9F3;
   background: #1F1F3D;;
 }
@@ -63,10 +63,7 @@ body {
   padding: 20px;
 }
 
-.ideas {
-  font: 20px 'Open Sans', light;
-  color: 1F1F3D;
-}
+
 
 .body {
   font: bold 18px 'Open Sans', light;
@@ -84,10 +81,18 @@ body {
 
 .filter-ideas {
   display: hidden;
+  color: #BFBFDD;
+  /* kj-can't change font for some reason */
 }
 
 .show-ideas-button{
   display: hidden;
+  color: #E9E9F3;
+  background-color: #353567;
+  border: 1% solid #5356A4;
+  max-width: 300px;
+  font: 15px;
+  /* kj-can't change font for some reason */
 }
 
 .search-ideas {
@@ -113,11 +118,26 @@ body {
   display: flex;
   flex: 1;
   flex-direction: column;
-}
+  font: 20px 'Open Sans', light;
+  color: #1F1F3D;
+  }
+
+  .ideas div {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
 
 .idea-form {
-  flex-grow: 2;
+  flex-grow: 1;
   padding: 15px;
+}
+
+.idea-form div {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  max-width: 400px;
+  /* kj-now the form is centered in desktop mode */
 }
 
 .idea-cards {
@@ -150,23 +170,23 @@ textarea {
   max-width:400px;
 }
 
-.idea-form div {
-  margin-top: 5%;
-  margin-bottom: 5%;
-  max-width: 400px;
-}
+
 
 .idea-cards div {
   margin: 5%;
   color: #1F1F3D;
   font: 17px "Open Sans", Light;
   border: 2px solid #353567;
+  max-width: 300px;
+  /* kj-need to check width of comment box */
 }
 
 .idea-card-top {
   background-color: #1F1F3D;
   color:red;
   padding: 1%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .idea-card-title {
@@ -189,6 +209,8 @@ textarea {
   background-color: #5356A4;
   color: #FFFFFF;
   padding: 2%;
+  display: flex;
+  align-items: center;
 }
 
 /*=== media queries ===*/
