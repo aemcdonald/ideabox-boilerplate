@@ -105,13 +105,15 @@ body {
 }
 
 /*=== main section ===*/
-
+.header-text-image{
+  position:re
+}
 .header-text {
 
 }
 
 .hidden {
-  display: none;
+  display: inherit;
 }
 
 .ideas {
@@ -170,7 +172,9 @@ textarea {
   max-width:400px;
 }
 
-
+.hide{
+  display: none;
+}
 
 .idea-cards div {
   margin: 5%;
@@ -223,15 +227,26 @@ textarea {
     font-size: 18px;
     padding: 10px;
   }
+  .hide{
+    display: inherit;
+  }
+.header-text-image{
+  position: absolute;
+  left: 5px;
+  top:10px;
+  bottom: 10px;
+
+}
 
   .hidden {
-  display: inline-block !important;
+  display: none; !important;
 }
 
   .menu {
     height: 40px;
     text-align: center;
     width: 100%;
+    position: relative;
   }
 
   .idea-form {
