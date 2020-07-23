@@ -21,6 +21,13 @@ body {
 
 .purple-1 {
   background: #EAEAF4;
+  height: 100%;
+
+}
+
+.purple-1 body {
+  height: 100%;
+    display: flex;
 }
 
 .purple-2 {
@@ -34,13 +41,21 @@ body {
 
 .menu {
   color: #E9E9F3;
-  background: #1F1F3D;;
+  background: #1F1F3D;
+  height: 100%;
+  width: 200px;
 }
+
+.menu .purple-4 {
+  height: 100%;
+    display: flex;
+}
+
 
 .save-button {
   font: 20px 'Open Sans', light;
   color:#E9E9F3;
-  background-color: #5356A4;
+  background-color: #353567;
   border: 1px solid #353567;
   max-width: 1000px;
   width: 100%;
@@ -63,6 +78,7 @@ body {
   font-family: 'Open Sans';
   font-weight: bold;
   padding: 20px;
+  border-bottom: #353567;
 }
 
 
@@ -76,26 +92,43 @@ body {
 
 /*=== menu section ===*/
 
-.menu {
-  height: 100%;
-  width: 380px;
-}
+
 
 .filter-ideas {
-  display: hidden;
+
   color: #BFBFDD;
+  padding-left: 10%;
+  padding-bottom: 10%;
   /* kj-can't change font for some reason */
 }
 
+
 .show-ideas-button{
-  display: hidden;
+  font: 15px 'Open Sans', light;
+  font-weight: bold;
   color: #E9E9F3;
-  background-color: #353567;
-  border: 1% solid #5356A4;
-  max-width: 450px;
+  background-color: #5356A4;
+  border: 1px solid #353567;
+  max-width: 90%;
   font: 15px;
-  /* kj-can't change font for some reason */
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding: 8px 0 8px 0;
 }
+
+.starred-ideas {
+  font: 15px 'Open Sans';
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #353567;
+  border-bottom: 1px solid #353567;
+  padding-top: 6%;
+  padding-bottom: 6%;
+  /* padding-left: 10%; */
+}
+
+
 
 .search-ideas {
   background-color: #E9E9F3;
@@ -110,7 +143,8 @@ body {
 
 .search-bar img {
   border: none;
-  background-color: #5356A4;
+  background-color: #353567;
+  /* fixed the color */
   padding: 1%;
   align-self: center;
   width: 10%;
@@ -123,7 +157,7 @@ body {
   border: 1px solid #5656A4;
   border-radius: 3px;
   margin: auto;
-  background-color: #5356A4;
+  background-color: #353567;
 }
 
 /*=== main section ===*/
@@ -131,9 +165,6 @@ body {
   position:re
 }
 
-.header-text {
-
-}
 
 .hidden {
   display: inherit;
@@ -183,6 +214,7 @@ textarea {
   width: 100% ;
   max-width: 450px;
   height: 40px;
+
 }
 
 .body-input {
