@@ -10,11 +10,16 @@ html, body, h1, h2, h3, h4, h5, h6, p {
 }
 
 html, body {
-  height: 100%
+  height: 100%;
 }
 
 body {
   display: flex;
+
+}
+
+html {
+  margin-bottom: 7%;
 }
 
 /*=== Background Colors ===*/
@@ -44,6 +49,7 @@ body {
   background: #1F1F3D;
   height: 100%;
   width: 200px;
+
 }
 
 .menu .purple-4 {
@@ -229,22 +235,25 @@ textarea {
   display: none;
 }
 
+
 .idea-cards-main-area {
   /* flex-grow: 3; */
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-gap: 1em;
+  /* grid-row-gap: 6%; */
+  /* grid-column-gap: auto; */
+  margin-top: 3%;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   width: 100%;
-  column-gap:
-
   /* flex-wrap: wrap; */
-  /* padding: 1%; */
+  padding: 0% 3% 0% 3%;
   min-width: 300px;
 }
 
 
 .idea-cards div {
-  margin: 5%;
+  /* margin: 5%; */
   color: #1F1F3D;
   font: 17px "Open Sans", Light;
   border: 2px solid #353567;
@@ -302,6 +311,12 @@ textarea {
     max-width:450px;
 
     /* kj-need to check width of comment box */
+  }
+
+  .idea-cards-main-area {
+    grid-template-columns: 1fr;
+
+
   }
 
   .header-text {
