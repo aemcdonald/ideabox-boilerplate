@@ -3,6 +3,8 @@ var ideaForm = document.querySelector(".idea-form");
 var titleInput = document.querySelector(".title-input");
 var bodyInput = document.querySelector(".body-input");
 var ideaCardsArea = document.querySelector(".idea-cards-main-area");
+var deleteButton = document.querySelector(".delete-icon");
+var favoritedStar = document.querySelector(".star-active");
 
 saveButton.disabled = true; //need to add class in CSS to change appearance
 saveButton.addEventListener("click", function(){
@@ -31,8 +33,12 @@ function displayIdeas() {
   section.classList.add("idea-cards");
   //add section.id.add to select by id for deletion
   section.innerHTML = `<div>
-    <p class="idea-card-top"><img src="icons/star-active.svg" width="30" height="auto"><img src="icons/delete.svg" width="30" height="auto"></p>
-    <section class="idea-card-body">
+  <p class="idea-card-top">
+    <img src="icons/star-active.svg" class="star-active none" width="30" height="auto">
+    <img src="icons/star.svg" class="star-inactive" width="30" height="auto">
+    <img src="icons/delete.svg" class="delete-icon" width="30" height="auto">
+  </p>
+  <section class="idea-card-body">
     <h1 class="idea-card-title">${displayedIdeas[0].title}</h1>
     <section class="idea-card-text">
       <p>${displayedIdeas[0].body}</p>
