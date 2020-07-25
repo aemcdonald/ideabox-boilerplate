@@ -181,6 +181,10 @@ html {
   display: inherit;
 }
 
+.none {
+  display: none;
+}
+
 .ideas {
   display: flex;
   flex: 1;
