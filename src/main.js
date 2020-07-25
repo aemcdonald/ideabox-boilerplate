@@ -8,6 +8,7 @@ saveButton.disabled = true; //need to add class in CSS to change appearance
 saveButton.addEventListener("click", function(){
   createIdeas();
   displayIdeas();
+  clearFields();
 });
 ideaForm.addEventListener("keyup", checkUserInput);
 
@@ -40,4 +41,9 @@ function displayIdeas() {
     </section>
   </div>`
   ideaCardsArea.appendChild(section);
+}
+function clearFields() {
+  event.preventDefault();
+  titleInput.value = "";
+  bodyInput.value = "";
 }
