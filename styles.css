@@ -70,6 +70,7 @@ html {
 
 .save-button:disabled {
   opacity: 70%;
+  cursor: not-allowed;
 }
 
 .title {
