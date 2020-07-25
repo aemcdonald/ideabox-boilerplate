@@ -23,12 +23,13 @@ function checkUserInput() {
 
 function createIdeas() {
   var ideaInstance = new Idea(titleInput.value, bodyInput.value, false);
-  displayedIdeas.push(ideaInstance);
+  displayedIdeas.unshift(ideaInstance);
 }
 
 function displayIdeas() {
   var section = document.createElement("section");
   section.classList.add("idea-cards");
+  //add section.id.add to select by id for deletion
   section.innerHTML = `<div>
     <p class="idea-card-top"><img src="icons/star-active.svg" width="30" height="auto"><img src="icons/delete.svg" width="30" height="auto"></p>
     <section class="idea-card-body">
