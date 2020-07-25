@@ -48,13 +48,14 @@ html {
   color: #E9E9F3;
   background: #1F1F3D;
   height: 100%;
-  width: 200px;
-
+  min-width: 200px;
+  /* add min width */
 }
 
 .menu .purple-4 {
   height: 100%;
     display: flex;
+
 }
 
 
@@ -116,6 +117,8 @@ html {
   background-color: #5356A4;
   border: 1px solid #353567;
   max-width: 90%;
+  min-width: 155px;
+  /* add min width */
   font: 15px;
   margin-left: auto;
   margin-right: auto;
@@ -218,7 +221,8 @@ textarea {
   width: 100% ;
   max-width: 450px;
   height: 40px;
-
+  overflow: scroll;
+  /* add overflow */
 }
 
 .body-input {
@@ -229,6 +233,8 @@ textarea {
   width: 100%;
   height: 80px;
   max-width: 450px;
+  overflow: scroll;
+  /* add overflow */
 }
 
 .hide{
@@ -249,24 +255,37 @@ textarea {
   /* flex-wrap: wrap; */
   padding: 0% 3% 0% 3%;
   min-width: 300px;
+
+
+/* add all of this below */
+display: grid;
+grid-row-gap: 6%;
+grid-column-gap: 6%;
+margin-top: 3%;
+grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+justify-items: center;
+width: 100%;
+padding: 0% 3% 0% 3%;
+min-width: 300px;
 }
 
+.idea-cards{
+background-color: white;
+
+}
+/* add entire section */
 
 .idea-cards div {
   /* margin: 5%; */
   color: #1F1F3D;
   font: 17px "Open Sans", Light;
   border: 2px solid #353567;
-  max-width: inherit;
-}
+  height: 215px;
+  width: 300px;
+  background-color: white;
 
-/* .hero-profiles {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 10px;
-    min-width: 300px;
-} */
+  /* add height, width, background-color:  */
+}
 
 .idea-card-top {
   background-color: #1F1F3D;
@@ -276,6 +295,8 @@ textarea {
   justify-content: space-between;
 }
 
+
+
 .idea-card-title {
   color: #1F1F3D;
   background-color: #FFFFFF;
@@ -283,14 +304,22 @@ textarea {
   font-weight: bold;
   padding-top: 3%;
   padding-left: 4%;
-   border-top: 2px solid #353567;
+  border-top: 2px solid #353567;
+  overflow: scroll;
+  word-wrap: break-word;
+  max-height: 40px;
+  /* add overflow, word wrap, and max height */
 }
 
 .idea-card-text {
   color: #1F1F3D;
   background-color: #FFFFFF;
-  border-bottom: 2px solid #353567;
+  /* border-bottom: 2px solid #353567; REMOVE*/
   padding: 4%;
+  max-height: 100px;
+  overflow: scroll;
+  word-wrap: break-word;
+  /* add max-height, overflow, and word-wrap  */
 }
 
 .idea-card-comment {
@@ -299,6 +328,18 @@ textarea {
   padding: 2%;
   display: flex;
   align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 2px solid #353567;
+  margin-top: 4%;
+  /* add width, border, margin  */
+}
+
+
+.idea-cards div {
+  position: relative;
+/* add antire section */
 }
 
 /*=== media queries ===*/
