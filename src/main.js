@@ -16,7 +16,13 @@ saveButton.addEventListener("click", function(){
 ideaForm.addEventListener("keyup", checkUserInput);
 
 ideaCardsArea.addEventListener("click", function() {
+  if(event.target.classList.contains('star')){
   toggleStars(event.target);
+}
+if(event.target.classList.contains('delete-icon')){
+event.target.parentElement.parentElement.parentElement.innerHTML=''
+
+}
 });
 
 var displayedIdeas = [];
@@ -39,7 +45,6 @@ function displayIdeas() {
   section.innerHTML = `<div>
   <p class="idea-card-top">
     <img src="icons/star-active.svg" class="star star-active none" width="30" height="auto">
-    <img src="icons/star.svg" class="star star-inactive" width="30" height="auto">
     <img src="icons/delete.svg" class="delete-icon" width="30" height="auto">
   </p>
   <section class="idea-card-body">
@@ -53,7 +58,6 @@ function displayIdeas() {
   </div>`
   ideaCardsArea.appendChild(section);
 }
-
 function clearFields() {
   event.preventDefault();
   titleInput.value = "";
@@ -61,5 +65,17 @@ function clearFields() {
 }
 
 function toggleStars(element) {
-
+  var imagePath = window.location.href;
+  console.log(element.src)
+  console.log(imagePath);
+  console.log("star off", element.src == "./icons/star.svg")
+  console.log("active star", element.src == "./icons/star-active.svg")
+  //toggle hidden class on star icon to be active or inactive;
+  var activeStarImage = `${imagePath}icons/star-active.svg`
+  var inactiveStarImage = `${imagePath}icons/star.svg`
+  if (element.src == inactiveStarImage) {
+    element.src = activeStarImage
+   } else {
+     element.src = inactiveStarImage
+  }
 }

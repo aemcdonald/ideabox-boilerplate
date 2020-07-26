@@ -48,15 +48,13 @@ html {
   color: #E9E9F3;
   background: #1F1F3D;
   height: 100%;
-  width: 200px;
-
+  min-width: 200px;
 }
 
 .menu .purple-4 {
   height: 100%;
     display: flex;
 }
-
 
 .save-button {
   font: 20px 'Open Sans', light;
@@ -102,16 +100,12 @@ html {
 
 /*=== menu section ===*/
 
-
-
 .filter-ideas {
 
   color: #BFBFDD;
   padding-left: 10%;
   padding-bottom: 10%;
-  /* kj-can't change font for some reason */
 }
-
 
 .show-ideas-button{
   font: 15px 'Open Sans', light;
@@ -120,6 +114,7 @@ html {
   background-color: #5356A4;
   border: 1px solid #353567;
   max-width: 90%;
+  min-width: 155px;
   font: 15px;
   margin-left: auto;
   margin-right: auto;
@@ -135,10 +130,7 @@ html {
   border-bottom: 1px solid #353567;
   padding-top: 6%;
   padding-bottom: 6%;
-  /* padding-left: 10%; */
 }
-
-
 
 .search-ideas {
   background-color: #E9E9F3;
@@ -155,7 +147,6 @@ html {
   border: none;
   background-color: #353567;
   border: 1px solid #353567;
-  /* fixed the color */
   padding: 1%;
   align-self: center;
   width: 10%;
@@ -193,11 +184,10 @@ html {
   color: #1F1F3D;
   }
 
-  .ideas div {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
+.ideas div {
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .idea-form {
   flex-grow: 1;
@@ -208,9 +198,7 @@ html {
   margin-top: 5%;
   margin-bottom: 5%;
   max-width: 450px;
-  /* kj-now the form is centered in desktop mode */
 }
-
 
 textarea {
   resize: none;
@@ -226,7 +214,7 @@ textarea {
   width: 100% ;
   max-width: 450px;
   height: 40px;
-
+  overflow: scroll;
 }
 
 .body-input {
@@ -237,44 +225,45 @@ textarea {
   width: 100%;
   height: 80px;
   max-width: 450px;
+  overflow: scroll;
 }
 
 .hide{
   display: none;
 }
 
-
 .idea-cards-main-area {
-  /* flex-grow: 3; */
   display: grid;
   grid-gap: 1em;
-  /* grid-row-gap: 6%; */
-  /* grid-column-gap: auto; */
   margin-top: 3%;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   width: 100%;
-  /* flex-wrap: wrap; */
   padding: 0% 3% 0% 3%;
   min-width: 300px;
+  display: grid;
+  grid-row-gap: 6%;
+  grid-column-gap: 6%;
+  margin-top: 3%;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  justify-items: center;
+  padding: 0% 3% 0% 3%;
+
 }
 
+.idea-cards{
+background-color: white;
+}
 
 .idea-cards div {
-  /* margin: 5%; */
   color: #1F1F3D;
   font: 17px "Open Sans", Light;
   border: 2px solid #353567;
   max-width: inherit;
+  height: 215px;
+   width: 300px;
+   background-color: white;
 }
-
-/* .hero-profiles {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 10px;
-    min-width: 300px;
-} */
 
 .idea-card-top {
   background-color: #1F1F3D;
@@ -291,14 +280,19 @@ textarea {
   font-weight: bold;
   padding-top: 3%;
   padding-left: 4%;
-   border-top: 2px solid #353567;
+  border-top: 2px solid #353567;
+  overflow: scroll;
+  word-wrap: break-word;
+  max-height: 40px;
 }
 
 .idea-card-text {
   color: #1F1F3D;
   background-color: #FFFFFF;
-  border-bottom: 2px solid #353567;
   padding: 4%;
+  max-height: 100px;
+  overflow: scroll;
+  word-wrap: break-word;
 }
 
 .idea-card-comment {
@@ -307,24 +301,39 @@ textarea {
   padding: 2%;
   display: flex;
   align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 2px solid #353567;
+  margin-top: 4%;
+}
+.idea-cards div {
+  position: relative;
 }
 
 /*=== media queries ===*/
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 850px) {
   body {
     flex-direction: column;
+    resize:both;
   }
+
+.idea-cards {
+  width: auto;
+}
+
   .idea-cards div {
-
     max-width:450px;
-
-    /* kj-need to check width of comment box */
+    width: auto;
   }
 
   .idea-cards-main-area {
-    grid-template-columns: 1fr;
-
-
+    display: grid;
+    min-width: 150px;
+    max-width: 300px;
+    width: 100%;
+    grid-template-rows: fit-content(100%);
+    /* still need to make rows appear on mobile view. */
   }
 
   .header-text {
@@ -336,16 +345,16 @@ textarea {
     display: inherit;
   }
 
-.header-text-image{
-  position: absolute;
-  left: 5px;
-  top:10px;
-  bottom: 10px;
-}
+  .header-text-image{
+    position: absolute;
+    left: 5px;
+    top:10px;
+    bottom: 10px;
+  }
 
   .hidden {
-  display: none; !important;
-}
+    display: none; !important;
+  }
 
   .menu {
     height: 40px;
