@@ -28,7 +28,7 @@ ideaCardsArea.addEventListener("click", function() {
   toggleStars(event.target);
 }
 if(event.target.classList.contains('delete-icon')){
-  localStorage.removeItem`(event.target.parentElement.parentElement.parentElement.id)
+  localStorage.removeItem(event.target.parentElement.parentElement.parentElement.id)
   event.target.parentElement.parentElement.parentElement.innerHTML=''
 }
 });
