@@ -16,6 +16,7 @@ saveButton.addEventListener("click", function(){
 ideaForm.addEventListener("keyup", checkUserInput);
 
 ideaCardsArea.addEventListener("click", function() {
+  // toggleStars(event.target);
   toggleStars(event.target);
 });
 
@@ -53,7 +54,6 @@ function displayIdeas() {
   </div>`
   ideaCardsArea.appendChild(section);
 }
-
 function clearFields() {
   event.preventDefault();
   titleInput.value = "";
@@ -61,12 +61,14 @@ function clearFields() {
 }
 
 function toggleStars(element) {
+  var imagePath = window.location.href;
   console.log(element.src)
-  console.log("star off", element.src == "icons/star.svg")
-  console.log("active star", element.src == "icons/star-active.svg")
+  console.log(imagePath);
+  console.log("star off", element.src == "./icons/star.svg")
+  console.log("active star", element.src == "./icons/star-active.svg")
   //toggle hidden class on star icon to be active or inactive;
-  var activeStarImage = "http://127.0.0.1:54282/icons/star-active.svg"
-  var inactiveStarImage = "http://127.0.0.1:54282/icons/star.svg"
+  var activeStarImage = `${imagePath}icons/star-active.svg`
+  var inactiveStarImage = `${imagePath}icons/star.svg`
   if (element.src == inactiveStarImage) {
     element.src = activeStarImage
    } else {
