@@ -61,15 +61,5 @@ function clearFields() {
 }
 
 function toggleStars(element) {
-  console.log(element.src)
-  console.log("star off", element.src == "icons/star.svg")
-  console.log("active star", element.src == "icons/star-active.svg")
-  //toggle hidden class on star icon to be active or inactive;
-  var activeStarImage = "http://127.0.0.1:54282/icons/star-active.svg"
-  var inactiveStarImage = "http://127.0.0.1:54282/icons/star.svg"
-  if (element.src == inactiveStarImage) {
-    element.src = activeStarImage
-   } else {
-     element.src = inactiveStarImage
-  }
+
 }
