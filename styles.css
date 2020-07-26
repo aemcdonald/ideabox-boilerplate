@@ -319,7 +319,7 @@ background-color: white;
   }
 
 .idea-cards {
-  width: auto;
+  width: 100%;
 }
 
   .idea-cards div {
@@ -330,8 +330,7 @@ background-color: white;
   .idea-cards-main-area {
     display: grid;
     min-width: 150px;
-    max-width: 300px;
-    width: 100%;
+    width: auto;
     grid-template-rows: fit-content(100%);
     /* still need to make rows appear on mobile view. */
   }

@@ -9,10 +9,18 @@ var unfavoriteStar = document.querySelectorAll(".star-inactive");
 
 saveButton.disabled = true; //need to add class in CSS to change appearance
 saveButton.addEventListener("click", function(){
-  createIdeas();
-  displayIdeas();
+  var currentIdea = createIdeas();
+  displayIdeas(currentIdea);
   clearFields();
 });
+window.addEventListener('load', function(){
+
+
+  for(var i = 0; i<localStorage.length; i++) {
+    var idea = JSON.parse(localStorage.getItem(localStorage.key(i)))
+      displayIdeas(idea)
+  }
+})
 ideaForm.addEventListener("keyup", checkUserInput);
 
 ideaCardsArea.addEventListener("click", function() {
@@ -20,8 +28,8 @@ ideaCardsArea.addEventListener("click", function() {
   toggleStars(event.target);
 }
 if(event.target.classList.contains('delete-icon')){
-event.target.parentElement.parentElement.parentElement.innerHTML=''
-
+  localStorage.removeItem(event.target.parentElement.parentElement.parentElement.id)
+  event.target.parentElement.parentElement.parentElement.innerHTML=''
 }
 });
 
@@ -36,21 +44,24 @@ function checkUserInput() {
 function createIdeas() {
   var ideaInstance = new Idea(titleInput.value, bodyInput.value, false);
   displayedIdeas.unshift(ideaInstance);
+  ideaInstance.saveToStorage()
+  return ideaInstance
 }
 
-function displayIdeas() {
+function displayIdeas(idea) {
   var section = document.createElement("section");
   section.classList.add("idea-cards");
+  section.id = idea.id
   //add section.id.add to select by id for deletion
   section.innerHTML = `<div>
   <p class="idea-card-top">
-    <img src="icons/star-active.svg" class="star star-active none" width="30" height="auto">
+    <img src="icons/star.svg" class="star " width="30" height="auto">
     <img src="icons/delete.svg" class="delete-icon" width="30" height="auto">
   </p>
   <section class="idea-card-body">
-    <h1 class="idea-card-title">${displayedIdeas[0].title}</h1>
+    <h1 class="idea-card-title">${idea.title}</h1>
     <section class="idea-card-text">
-      <p>${displayedIdeas[0].body}</p>
+      <p>${idea.body}</p>
      </section>
       <p class="idea-card-comment"><img src="icons/comment.svg" width="30" height="auto">Comment</p>
     </a>
@@ -79,3 +90,10 @@ function toggleStars(element) {
      element.src = inactiveStarImage
   }
 }
+// function saveDisplayIdeas(){
+//   var localDisplayedIdeas = JSON.parse(localStorage.getItem('displayedIdeas'))
+//   var allDisplayItems = localDisplayedIdeas.concat(displayedIdeas)
+//   console.log('local', localDisplayedIdeas)
+//   var displayIdeasJson = JSON.stringify(allDisplayItems)
+//   localStorage.setItem('displayedIdeas',displayIdeasJson)
+// }
