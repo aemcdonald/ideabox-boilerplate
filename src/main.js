@@ -41,10 +41,11 @@ function createIdeas() {
 function displayIdeas() {
   var section = document.createElement("section");
   section.classList.add("idea-cards");
+  section.id = displayedIdeas[0].id
   //add section.id.add to select by id for deletion
   section.innerHTML = `<div>
   <p class="idea-card-top">
-    <img src="icons/star-active.svg" class="star star-active none" width="30" height="auto">
+    <img src="icons/star.svg" class="star " width="30" height="auto">
     <img src="icons/delete.svg" class="delete-icon" width="30" height="auto">
   </p>
   <section class="idea-card-body">
