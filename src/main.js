@@ -28,7 +28,7 @@ ideaCardsArea.addEventListener("click", function() {
   toggleStars(event.target);
 }
 if(event.target.classList.contains('delete-icon')){
-  localStorage.removeItem(event.target.parentElement.parentElement.parentElement.id)
+  localStorage.removeItem(event.target.parentElement.parentElement.parentElement.dataset.id)
   event.target.parentElement.parentElement.parentElement.innerHTML=''
 }
 });
@@ -43,7 +43,7 @@ function checkUserInput() {
 
 function createIdeas() {
   var ideaInstance = new Idea(titleInput.value, bodyInput.value, false);
-  displayedIdeas.unshift(ideaInstance);
+  ideaInstance.saveToDataModel()
   ideaInstance.saveToStorage()
   return ideaInstance
 }
@@ -51,7 +51,7 @@ function createIdeas() {
 function displayIdeas(idea) {
   var section = document.createElement("section");
   section.classList.add("idea-cards");
-  section.id = idea.id
+  section.dataset.id = idea.id
   //add section.id.add to select by id for deletion
   section.innerHTML = `<div>
   <p class="idea-card-top">
@@ -90,10 +90,9 @@ function toggleStars(element) {
      element.src = inactiveStarImage
   }
 }
-// function saveDisplayIdeas(){
-//   var localDisplayedIdeas = JSON.parse(localStorage.getItem('displayedIdeas'))
-//   var allDisplayItems = localDisplayedIdeas.concat(displayedIdeas)
-//   console.log('local', localDisplayedIdeas)
-//   var displayIdeasJson = JSON.stringify(allDisplayItems)
-//   localStorage.setItem('displayedIdeas',displayIdeasJson)
-// }
+function updateDisplayIdeas(idea){
+
+}
+function saveDisplayIdeasToLocalStorage(){
+
+}
