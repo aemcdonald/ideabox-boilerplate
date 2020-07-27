@@ -14,23 +14,27 @@ saveButton.addEventListener("click", function(){
   clearFields();
 });
 window.addEventListener('load', function(){
+if(localStorage.length === 0){
+  return
+}
+console.log(localStorage)
+  retrieveDisplayIdeasfromLocalStorage()
 
-
-  for(var i = 0; i<localStorage.length; i++) {
-    var idea = JSON.parse(localStorage.getItem(localStorage.key(i)))
-      displayIdeas(idea)
+  for(var i = 0; i<displayedIdeas.length; i++){
+    displayIdeas(displayedIdeas[i])
   }
 })
+
 ideaForm.addEventListener("keyup", checkUserInput);
 
 ideaCardsArea.addEventListener("click", function() {
   if(event.target.classList.contains('star')){
-  toggleStars(event.target);
-}
-if(event.target.classList.contains('delete-icon')){
-  localStorage.removeItem(event.target.parentElement.parentElement.parentElement.id)
-  event.target.parentElement.parentElement.parentElement.innerHTML=''
-}
+    toggleStars(event.target);
+  }
+  if(event.target.classList.contains('delete-icon')){
+    deleteFromDataModel(event.target.parentElement.parentElement.parentElement.dataset.id)
+    event.target.parentElement.parentElement.parentElement.innerHTML=''
+  }
 });
 
 var displayedIdeas = [];
@@ -43,15 +47,15 @@ function checkUserInput() {
 
 function createIdeas() {
   var ideaInstance = new Idea(titleInput.value, bodyInput.value, false);
-  displayedIdeas.unshift(ideaInstance);
-  ideaInstance.saveToStorage()
+  saveToDataModel(ideaInstance)
+  saveDisplayedIdeasToLocalStorage()
   return ideaInstance
 }
 
 function displayIdeas(idea) {
   var section = document.createElement("section");
   section.classList.add("idea-cards");
-  section.id = idea.id
+  section.dataset.id = idea.id
   //add section.id.add to select by id for deletion
   section.innerHTML = `<div>
   <p class="idea-card-top">
@@ -87,13 +91,46 @@ function toggleStars(element) {
   if (element.src == inactiveStarImage) {
     element.src = activeStarImage
    } else {
-     element.src = inactiveStarImage
-  }
+      element.src = inactiveStarImage
+    }
 }
-// function saveDisplayIdeas(){
-//   var localDisplayedIdeas = JSON.parse(localStorage.getItem('displayedIdeas'))
-//   var allDisplayItems = localDisplayedIdeas.concat(displayedIdeas)
-//   console.log('local', localDisplayedIdeas)
-//   var displayIdeasJson = JSON.stringify(allDisplayItems)
-//   localStorage.setItem('displayedIdeas',displayIdeasJson)
-// }
+function updateDisplayIdeas(idea){
+  displayedIdeas.forEach(function(ideaInDisplayedIdeas,i){
+    if(ideaInDisplayedIdeas.id === idea.id){
+      displayedIdeas[i].title = idea.title;
+      displayedIdeas[i].body = idea.body;
+      displayedIdeas[i].star = idea.star;
+    }
+  })
+}
+function saveDisplayedIdeasToLocalStorage(){
+  var displayedIdeasString = JSON.stringify(displayedIdeas)
+  localStorage.setItem('displayedIdeas',displayedIdeasString)
+}
+
+function retrieveDisplayIdeasfromLocalStorage(){
+var displayIdeasInLocalStorage = JSON.parse(localStorage.getItem('displayedIdeas'))
+if(displayedIdeas.length > 0){
+  displayedIdeas = displayedIdeas.concat(displayIdeasInLocalStorage)
+
+}else{
+  displayedIdeas = displayIdeasInLocalStorage
+console.log('when changed',displayedIdeas)
+}
+
+}
+function deleteFromDataModel(id){
+  console.log(displayedIdeas[0])
+  console.log(localStorage)
+  console.log(displayedIdeas[0].id)
+  for(var i = 0; i<displayedIdeas.length; i++){
+    if(displayedIdeas[i].id == Number(id)){
+      displayedIdeas.splice(i,1)
+    }
+  }
+  console.log(displayedIdeas)
+  saveDisplayedIdeasToLocalStorage()
+}
+function saveToDataModel(idea) {
+  displayedIdeas.push(idea)
+}
