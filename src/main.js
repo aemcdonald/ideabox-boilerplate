@@ -91,8 +91,15 @@ function toggleStars(element) {
   }
 }
 function updateDisplayIdeas(idea){
-
+  displayedIdeas.forEach(function(ideaInDisplayedIdeas,i){
+    if(ideaInDisplayedIdea.id === idea.id){
+      displayedIdeas[i].title = idea.title;
+      displayedIdeas[i].body = idea.body;
+      displayedIdeas[i].star = idea.star;
+    }
+  })
 }
 function saveDisplayIdeasToLocalStorage(){
 
 }
+function retrieveDisplayIdeasToL
