@@ -14,23 +14,19 @@ saveButton.addEventListener("click", function(){
   clearFields();
 });
 window.addEventListener('load', function(){
-
-
-  for(var i = 0; i<localStorage.length; i++) {
-    var idea = JSON.parse(localStorage.getItem(localStorage.key(i)))
-      displayIdeas(idea)
-  }
+  retrieveDisplayIdeasfromLocalStorage()
 })
+
 ideaForm.addEventListener("keyup", checkUserInput);
 
 ideaCardsArea.addEventListener("click", function() {
   if(event.target.classList.contains('star')){
-  toggleStars(event.target);
-}
-if(event.target.classList.contains('delete-icon')){
-  localStorage.removeItem(event.target.parentElement.parentElement.parentElement.dataset.id)
-  event.target.parentElement.parentElement.parentElement.innerHTML=''
-}
+    toggleStars(event.target);
+  }
+  if(event.target.classList.contains('delete-icon')){
+    localStorage.removeItem(event.target.parentElement.parentElement.parentElement.dataset.id)
+    event.target.parentElement.parentElement.parentElement.innerHTML=''
+  }
 });
 
 var displayedIdeas = [];
@@ -44,7 +40,8 @@ function checkUserInput() {
 function createIdeas() {
   var ideaInstance = new Idea(titleInput.value, bodyInput.value, false);
   ideaInstance.saveToDataModel()
-  ideaInstance.saveToStorage()
+  saveDisplayedIdeasToLocalStorage()
+  
   return ideaInstance
 }
 
@@ -87,8 +84,8 @@ function toggleStars(element) {
   if (element.src == inactiveStarImage) {
     element.src = activeStarImage
    } else {
-     element.src = inactiveStarImage
-  }
+      element.src = inactiveStarImage
+    }
 }
 function updateDisplayIdeas(idea){
   displayedIdeas.forEach(function(ideaInDisplayedIdeas,i){
@@ -99,7 +96,11 @@ function updateDisplayIdeas(idea){
     }
   })
 }
-function saveDisplayIdeasToLocalStorage(){
-
+function saveDisplayedIdeasToLocalStorage(){
+  var displayedIdeasString = JSON.stringify(displayedIdeas)
+  localStorage.setItem('displayedIdeas',displayedIdeasString)
 }
-function retrieveDisplayIdeasToL
+function retrieveDisplayIdeasfromLocalStorage(){
+var displayIdeasInLocalStorage = JSON.parse(localStorage.getItem(displayedIdeas))
+displayedIdeas = displayedIdeas.concat(displayIdeasInLocalStorage)
+}
