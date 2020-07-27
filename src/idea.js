@@ -5,10 +5,7 @@ class Idea {
     this.body = body;
     this.star = star
   }
-  saveToStorage() {
-    var id = this.id
-    var json = JSON.stringify(this)
-    console.log(json)
-    localStorage.setItem(id,json)
+  saveToDataModel() {
+    displayedIdeas.push(this)
   }
 }
