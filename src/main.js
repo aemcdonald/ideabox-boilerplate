@@ -14,7 +14,14 @@ saveButton.addEventListener("click", function(){
   clearFields();
 });
 window.addEventListener('load', function(){
+if(localStorage.length === 0){
+  return
+}
   retrieveDisplayIdeasfromLocalStorage()
+
+  for(var i = 0; i<displayedIdeas.length; i++){
+    displayIdeas(displayedIdeas[i])
+  }
 })
 
 ideaForm.addEventListener("keyup", checkUserInput);
@@ -24,7 +31,7 @@ ideaCardsArea.addEventListener("click", function() {
     toggleStars(event.target);
   }
   if(event.target.classList.contains('delete-icon')){
-    localStorage.removeItem(event.target.parentElement.parentElement.parentElement.dataset.id)
+    deleteFromDataModel(event.target.parentElement.parentElement.parentElement.dataset.id)
     event.target.parentElement.parentElement.parentElement.innerHTML=''
   }
 });
@@ -41,13 +48,14 @@ function createIdeas() {
   var ideaInstance = new Idea(titleInput.value, bodyInput.value, false);
   ideaInstance.saveToDataModel()
   saveDisplayedIdeasToLocalStorage()
-  
+
   return ideaInstance
 }
 
 function displayIdeas(idea) {
   var section = document.createElement("section");
   section.classList.add("idea-cards");
+  console.log()
   section.dataset.id = idea.id
   //add section.id.add to select by id for deletion
   section.innerHTML = `<div>
@@ -89,7 +97,7 @@ function toggleStars(element) {
 }
 function updateDisplayIdeas(idea){
   displayedIdeas.forEach(function(ideaInDisplayedIdeas,i){
-    if(ideaInDisplayedIdea.id === idea.id){
+    if(ideaInDisplayedIdeas.id === idea.id){
       displayedIdeas[i].title = idea.title;
       displayedIdeas[i].body = idea.body;
       displayedIdeas[i].star = idea.star;
@@ -97,10 +105,28 @@ function updateDisplayIdeas(idea){
   })
 }
 function saveDisplayedIdeasToLocalStorage(){
+if(displayedIdeas.length === 0)
   var displayedIdeasString = JSON.stringify(displayedIdeas)
   localStorage.setItem('displayedIdeas',displayedIdeasString)
 }
 function retrieveDisplayIdeasfromLocalStorage(){
-var displayIdeasInLocalStorage = JSON.parse(localStorage.getItem(displayedIdeas))
-displayedIdeas = displayedIdeas.concat(displayIdeasInLocalStorage)
+var displayIdeasInLocalStorage = JSON.parse(localStorage.getItem('displayedIdeas'))
+if(displayedIdeas.length > 0){
+  displayedIdeas = displayedIdeas.concat(displayIdeasInLocalStorage)
+
+}else{
+  displayedIdeas = displayIdeasInLocalStorage
+console.log('when changed',displayedIdeas)
+}
+
+}
+function deleteFromDataModel(id){
+  console.log(displayedIdeas.length)
+  console.log(displayedIdeas[0])
+  for(var i = 0; i<displayedIdeas.length; i++){
+    if(displayedIdeas[i].id == id){
+      displayedIdeas.splice(i,1)
+    }
+  }
+  saveDisplayedIdeasToLocalStorage()
 }

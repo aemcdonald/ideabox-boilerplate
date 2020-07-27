@@ -8,4 +8,5 @@ class Idea {
   saveToDataModel() {
     displayedIdeas.push(this)
   }
+
 }
