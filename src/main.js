@@ -17,6 +17,7 @@ window.addEventListener('load', function(){
 if(localStorage.length === 0){
   return
 }
+console.log(localStorage)
   retrieveDisplayIdeasfromLocalStorage()
 
   for(var i = 0; i<displayedIdeas.length; i++){
@@ -46,16 +47,14 @@ function checkUserInput() {
 
 function createIdeas() {
   var ideaInstance = new Idea(titleInput.value, bodyInput.value, false);
-  ideaInstance.saveToDataModel()
+  saveToDataModel(ideaInstance)
   saveDisplayedIdeasToLocalStorage()
-
   return ideaInstance
 }
 
 function displayIdeas(idea) {
   var section = document.createElement("section");
   section.classList.add("idea-cards");
-  console.log()
   section.dataset.id = idea.id
   //add section.id.add to select by id for deletion
   section.innerHTML = `<div>
@@ -105,10 +104,10 @@ function updateDisplayIdeas(idea){
   })
 }
 function saveDisplayedIdeasToLocalStorage(){
-if(displayedIdeas.length === 0)
   var displayedIdeasString = JSON.stringify(displayedIdeas)
   localStorage.setItem('displayedIdeas',displayedIdeasString)
 }
+
 function retrieveDisplayIdeasfromLocalStorage(){
 var displayIdeasInLocalStorage = JSON.parse(localStorage.getItem('displayedIdeas'))
 if(displayedIdeas.length > 0){
@@ -121,12 +120,17 @@ console.log('when changed',displayedIdeas)
 
 }
 function deleteFromDataModel(id){
-  console.log(displayedIdeas.length)
   console.log(displayedIdeas[0])
+  console.log(localStorage)
+  console.log(displayedIdeas[0].id)
   for(var i = 0; i<displayedIdeas.length; i++){
-    if(displayedIdeas[i].id == id){
+    if(displayedIdeas[i].id == Number(id)){
       displayedIdeas.splice(i,1)
     }
   }
+  console.log(displayedIdeas)
   saveDisplayedIdeasToLocalStorage()
+}
+function saveToDataModel(idea) {
+  displayedIdeas.push(idea)
 }

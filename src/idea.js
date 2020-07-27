@@ -5,8 +5,6 @@ class Idea {
     this.body = body;
     this.star = star
   }
-  saveToDataModel() {
-    displayedIdeas.push(this)
-  }
+
 
 }
