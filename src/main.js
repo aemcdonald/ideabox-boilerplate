@@ -6,14 +6,14 @@ var ideaCardsArea = document.querySelector(".idea-cards-main-area");
 var deleteButton = document.querySelector(".delete-icon");
 var favoritedStar = document.querySelectorAll(".star-active");
 var unfavoriteStar = document.querySelectorAll(".star-inactive");
-
-saveButton.disabled = true; //need to add class in CSS to change appearance
+//need to add class in CSS to change appearance
 saveButton.addEventListener("click", function(){
   var currentIdea = createIdeas();
   displayIdeas(currentIdea);
   clearFields();
 });
 window.addEventListener('load', function(){
+  saveButton.disabled = true
 if(localStorage.length === 0){
   return
 }
@@ -29,11 +29,16 @@ ideaForm.addEventListener("keyup", checkUserInput);
 
 ideaCardsArea.addEventListener("click", function() {
   if(event.target.classList.contains('star')){
-    toggleStars(event.target);
+      var section = getGreatGrandpaElement(event.target)
+    var idea = toggleStars(section.dataset['id'])
+    displayIdeas(idea)
+
   }
   if(event.target.classList.contains('delete-icon')){
-    deleteFromDataModel(event.target.parentElement.parentElement.parentElement.dataset.id)
-    event.target.parentElement.parentElement.parentElement.innerHTML=''
+
+    var section = getGreatGrandpaElement(event.target)
+    deleteFromDataModel(section.dataset['id'])
+    section.innerHTML=''
   }
 });
 
@@ -56,10 +61,11 @@ function displayIdeas(idea) {
   var section = document.createElement("section");
   section.classList.add("idea-cards");
   section.dataset.id = idea.id
+  var starPath = figureStarSource(idea)
   //add section.id.add to select by id for deletion
   section.innerHTML = `<div>
   <p class="idea-card-top">
-    <img src="icons/star.svg" class="star " width="30" height="auto">
+    <img src=${starPath} class="star " width="30" height="auto">
     <img src="icons/delete.svg" class="delete-icon" width="30" height="auto">
   </p>
   <section class="idea-card-body">
@@ -79,20 +85,26 @@ function clearFields() {
   bodyInput.value = "";
 }
 
-function toggleStars(element) {
-  var imagePath = window.location.href;
-  console.log(element.src)
-  console.log(imagePath);
-  console.log("star off", element.src == "./icons/star.svg")
-  console.log("active star", element.src == "./icons/star-active.svg")
-  //toggle hidden class on star icon to be active or inactive;
-  var activeStarImage = `${imagePath}icons/star-active.svg`
-  var inactiveStarImage = `${imagePath}icons/star.svg`
-  if (element.src == inactiveStarImage) {
-    element.src = activeStarImage
-   } else {
-      element.src = inactiveStarImage
+function toggleStars(number,event) {
+  for( var i = 0; i<displayedIdeas.length;i++){
+    if(displayedIdeas[i].id == number){
+      displayedIdeas[i].star =  true
+      return  displayedIdeas[i]
     }
+  }
+  // var imagePath = window.location.href;
+  //
+  // //toggle hidden class on star icon to be active or inactive;
+  // // var activeStarImage = `${imagePath}icons/star-active.svg`
+  // // var inactiveStarImage = `${imagePath}icons/star.svg`
+  // // if (element.src == inactiveStarImage) {
+  // //   element.src = activeStarImage
+  // //   element.dataset.id = 'favorite'
+  // //  } else {
+  // //       element.src = inactiveStarImage
+  // //       element.dataset.id = ''
+  // //   }
+
 }
 function updateDisplayIdeas(idea){
   displayedIdeas.forEach(function(ideaInDisplayedIdeas,i){
@@ -133,4 +145,31 @@ function deleteFromDataModel(id){
 }
 function saveToDataModel(idea) {
   displayedIdeas.push(idea)
+}
+
+function getGreatGrandpaElement(event){
+  return event.parentElement.parentElement.parentElement
+}
+function figureStarSource(idea){
+  var imagePath = window.location.href;
+
+  if(idea.star){
+    return `${imagePath}icons/star-active.svg`
+  }
+  else{
+    return `${imagePath}icons/star.svg`
+  }
+  //toggle hidden class on star icon to be active or inactive;
+  // var activeStarImage = `${imagePath}icons/star-active.svg`
+  // var inactiveStarImage = `${imagePath}icons/star.svg`
+  // if (element.src == inactiveStarImage) {
+  //   element.src = activeStarImage
+  //   element.dataset.id = 'favorite'
+  //  } else {
+  //       element.src = inactiveStarImage
+  //       element.dataset.id = ''
+  //   }
+}
+function filterDisplayedIdeasArray(){
+  
 }
