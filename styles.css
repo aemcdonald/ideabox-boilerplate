@@ -49,6 +49,7 @@ html {
   background: #1F1F3D;
   height: 100%;
   min-width: 200px;
+  position: fixed;
 }
 
 .menu .purple-4 {
@@ -182,6 +183,7 @@ html {
   flex-direction: column;
   font: 20px 'Open Sans', light;
   color: #1F1F3D;
+  width: 100%;
   }
 
 .ideas div {
@@ -192,6 +194,7 @@ html {
 .idea-form {
   flex-grow: 1;
   padding: 15px;
+  padding: 3% 3% 3% 20%;
 }
 
 .idea-form div {
@@ -239,7 +242,7 @@ textarea {
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   width: 100%;
-  padding: 0% 3% 0% 3%;
+  padding: 0% 3% 0% 20%;
   min-width: 300px;
   display: grid;
   grid-row-gap: 6%;
@@ -247,7 +250,7 @@ textarea {
   margin-top: 3%;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   justify-items: center;
-  padding: 0% 3% 0% 3%;
+  padding: 0% 3% 0% 20%;
 
 }
 
@@ -312,19 +315,23 @@ background-color: white;
 }
 
 /*=== media queries ===*/
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 950px) {
   body {
     flex-direction: column;
     resize:both;
   }
+.idea-form {
+  padding: 3%;
+}
+/* not entirely sure tbh? */
 
 .idea-cards {
-  width: 100%;
+  width: 90%;
 }
 
   .idea-cards div {
-    max-width:450px;
-    width: auto;
+    max-width: 100%;
+    width: 100%;
   }
 
   .idea-cards-main-area {
@@ -332,6 +339,7 @@ background-color: white;
     min-width: 150px;
     width: auto;
     grid-template-rows: fit-content(100%);
+    padding: 3%;
     /* still need to make rows appear on mobile view. */
   }
 
