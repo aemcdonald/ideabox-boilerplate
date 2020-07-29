@@ -68,7 +68,7 @@ function createIdeas() {
 function displayIdeas(displayedIdeasArray) {
   ideaCardsArea.innerHTML = "";
   var imagePath = window.location.href;
-var starImage;
+  var starImage;
 
   for (var i = 0; i < displayedIdeasArray.length; i++) {
     if(displayedIdeasArray[i].star){
