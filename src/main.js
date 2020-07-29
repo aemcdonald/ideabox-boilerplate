@@ -6,6 +6,7 @@ var ideaCardsArea = document.querySelector(".idea-cards-main-area");
 var deleteButton = document.querySelector(".delete-icon");
 var favoritedStar = document.querySelectorAll(".star-active");
 var unfavoriteStar = document.querySelectorAll(".star-inactive");
+var menu = document.querySelector(".menu");
 
 saveButton.disabled = true; //need to add class in CSS to change appearance
 saveButton.addEventListener("click", function(){
@@ -24,6 +25,14 @@ console.log(localStorage)
     displayIdeas(displayedIdeas[i])
   }
 })
+
+menu.addEventListener("click", function() {
+  if (event.target.classList.contains('hamburger-icon')) {
+
+  }
+}
+
+
 
 ideaForm.addEventListener("keyup", checkUserInput);
 
@@ -80,7 +89,7 @@ function clearFields() {
 }
 
 function toggleStars(element) {
-  var imagePath = window.location.href+'/';
+  var imagePath = window.location.href;
   console.log(element.src)
   console.log(imagePath);
   console.log("star off", element.src == "./icons/star.svg")
@@ -131,6 +140,11 @@ function deleteFromDataModel(id){
   console.log(displayedIdeas)
   saveDisplayedIdeasToLocalStorage()
 }
+
 function saveToDataModel(idea) {
   displayedIdeas.push(idea)
+}
+
+function toggleMobileMenu(event){
+
 }
