@@ -7,14 +7,14 @@ var deleteButton = document.querySelector(".delete-icon");
 var favoritedStar = document.querySelectorAll(".star-active");
 var unfavoriteStar = document.querySelectorAll(".star-inactive");
 var searchBar = document.querySelector(".search-ideas");
-var showStarButton = document.querySelector(".show-ideas-button")
+var showStarButton = document.querySelector(".show-ideas-button");
 
 
-showStarButton.addEventListener('click',function(){
-  if(showStarButton.innerText === 'Show Starred Ideas'){
+showStarButton.addEventListener('click',function() {
+  if (showStarButton.innerText === 'Show Starred Ideas') {
     filterStar()
     showStarButton.innerText = 'Show All Ideas'
-  }else{
+  } else {
     displayIdeas(displayedIdeas)
     showStarButton.innerText = 'Show Starred Ideas'
   }
@@ -25,15 +25,16 @@ searchBar.addEventListener("keyup", filterSearchBar);
 
 ideaForm.addEventListener("keyup", checkUserInput);
 
-saveButton.addEventListener("click", function(){
+saveButton.addEventListener("click", function() {
   var currentIdea = createIdeas();
-  displayIdeas(displayedIdeas)
+  displayIdeas(displayedIdeas);
   clearFields();
 });
 
+saveButton.disabled = true;
+
 window.addEventListener('load', function() {
-  saveButton.disabled = true;
-  if(localStorage.length === 0){
+  if(localStorage.length === 0) {
     return
   }
   retrieveDisplayIdeasfromLocalStorage()
@@ -57,6 +58,8 @@ var displayedIdeas = [];
 function checkUserInput() {
   if (titleInput.value !== "" && bodyInput.value !== "") {
     saveButton.disabled = false;
+  } else {
+    saveButton.disabled = true;
   }
 }
 
@@ -73,10 +76,10 @@ function displayIdeas(displayedIdeasArray) {
   var starImage;
 
   for (var i = 0; i < displayedIdeasArray.length; i++) {
-    if(displayedIdeasArray[i].star){
+    if(displayedIdeasArray[i].star) {
       starImage =`${imagePath}icons/star-active.svg`
 
-    }else{
+    } else {
     starImage = `${imagePath}icons/star.svg`
     }
     var section = document.createElement("section");
@@ -105,6 +108,7 @@ function clearFields() {
   event.preventDefault();
   titleInput.value = "";
   bodyInput.value = "";
+  saveButton.disabled = true;
 }
 
 function toggleStars(id) {
@@ -114,27 +118,22 @@ function toggleStars(id) {
   for (var i = 0; i<displayedIdeas.length; i++) {
     if (displayedIdeas[i].id == Number(id) &&   displayedIdeas[i].star) {
       displayedIdeas[i].star = false
-    }else if(displayedIdeas[i].id == Number(id) && !displayedIdeas[i].star){
+    }else if(displayedIdeas[i].id == Number(id) && !displayedIdeas[i].star) {
       displayedIdeas[i].star = true
-
     }
   }
-  // console.log(element.src)
-  // console.log(imagePath);
-  // console.log("star off", element.src == "./icons/star.svg")
-  // console.log("active star", element.src == "./icons/star-active.svg")
-  //toggle hidden class on star icon to be active or inactive;
-
 }
-function updateDisplayIdeas(idea){
+
+function updateDisplayIdeas(idea) {
   displayedIdeas.forEach(function(ideaInDisplayedIdeas,i) {
-    if (ideaInDisplayedIdeas.id === idea.id){
+    if (ideaInDisplayedIdeas.id === idea.id) {
       displayedIdeas[i].title = idea.title;
       displayedIdeas[i].body = idea.body;
       displayedIdeas[i].star = idea.star;
     }
   })
 }
+
 function saveDisplayedIdeasToLocalStorage() {
   var displayedIdeasString = JSON.stringify(displayedIdeas)
   localStorage.setItem('displayedIdeas',displayedIdeasString)
@@ -145,14 +144,13 @@ function retrieveDisplayIdeasfromLocalStorage() {
     if (displayedIdeas.length > 0) {
       displayedIdeas = displayedIdeas.concat(displayIdeasInLocalStorage)
 
-    }else{
+    } else {
       displayedIdeas = displayIdeasInLocalStorage
       console.log('when changed',displayedIdeas)
     }
 }
 
 function deleteFromDataModel(id) {
-
   for (var i = 0; i<displayedIdeas.length; i++) {
     if (displayedIdeas[i].id == Number(id)) {
       displayedIdeas.splice(i, 1)
@@ -165,19 +163,20 @@ function deleteFromDataModel(id) {
     displayedIdeas.push(idea)
 }
 
-function getGreatGrandpaElement(event){
+function getGreatGrandpaElement(event) {
   return event.parentElement.parentElement.parentElement
 }
-function figureStarSource(idea){
-  var imagePath = window.location.href;
 
-  if(idea.star){
+function figureStarSource(idea) {
+  var imagePath = window.location.href;
+  if(idea.star) {
     return `${imagePath}icons/star-active.svg`
   }
-  else{
+  else {
     return `${imagePath}icons/star.svg`
   }
 }
+
   function filterSearchBar() {
     var searchInputValue = searchBar.value.toUpperCase()
     var toDisplay = displayedIdeas.filter(function(object) {
@@ -187,26 +186,11 @@ function figureStarSource(idea){
     })
     displayIdeas(toDisplay)
     };
-
-    function filterStar(){
+    function filterStar() {
       var toDisplay = displayedIdeas.filter(function(object) {
         if (object.star) {
           return object;
         }
       })
-
       displayIdeas(toDisplay)
     }
-  //toggle hidden class on star icon to be active or inactive;
-  // var activeStarImage = `${imagePath}icons/star-active.svg`
-  // var inactiveStarImage = `${imagePath}icons/star.svg`
-  // if (element.src == inactiveStarImage) {
-  //   element.src = activeStarImage
-  //   element.dataset.id = 'favorite'
-  //  } else {
-  //       element.src = inactiveStarImage
-  //       element.dataset.id = ''
-  //   }
-// function filterDisplayedIdeasArray(){
-//
-// }
