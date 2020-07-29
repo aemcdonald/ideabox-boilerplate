@@ -6,11 +6,8 @@ var ideaCardsArea = document.querySelector(".idea-cards-main-area");
 var deleteButton = document.querySelector(".delete-icon");
 var favoritedStar = document.querySelectorAll(".star-active");
 var unfavoriteStar = document.querySelectorAll(".star-inactive");
-
-//search bar code
 var searchBar = document.querySelector(".search-ideas");
 
-searchBar.addEventListener("keyup", filterSearchBar);
 
 function filterSearchBar() {
   var searchInputValue = searchBar.value.toUpperCase()
@@ -22,33 +19,32 @@ function filterSearchBar() {
   displayIdeas(toDisplay)
   };
 
-saveButton.disabled = true; //need to add class in CSS to change appearance
+searchBar.addEventListener("keyup", filterSearchBar);
+
+ideaForm.addEventListener("keyup", checkUserInput);
+
 saveButton.addEventListener("click", function(){
   var currentIdea = createIdeas();
   displayIdeas(displayedIdeas)
   clearFields();
 });
-window.addEventListener('load', function(){
-if(localStorage.length === 0){
-  return
-}
-console.log(localStorage)
-  retrieveDisplayIdeasfromLocalStorage()
 
-  // for(var i = 0; i<displayedIdeas.length; i++){
+window.addEventListener('load', function() {
+  saveButton.disabled = true;
+  if(localStorage.length === 0){
+    return
+  }
+  retrieveDisplayIdeasfromLocalStorage()
     displayIdeas(displayedIdeas)
-  // }
 })
 
-ideaForm.addEventListener("keyup", checkUserInput);
-
 ideaCardsArea.addEventListener("click", function() {
-  if(event.target.classList.contains('star')){
+  if (event.target.classList.contains('star')) {
     toggleStars(event.target);
   }
-  if(event.target.classList.contains('delete-icon')){
+  if (event.target.classList.contains('delete-icon')) {
     deleteFromDataModel(event.target.parentElement.parentElement.parentElement.dataset.id)
-    event.target.parentElement.parentElement.parentElement.innerHTML=''
+    displayIdeas(displayedIdeas)
   }
 });
 
@@ -100,10 +96,10 @@ function clearFields() {
 
 function toggleStars(element) {
   var imagePath = window.location.href;
-  console.log(element.src)
-  console.log(imagePath);
-  console.log("star off", element.src == "./icons/star.svg")
-  console.log("active star", element.src == "./icons/star-active.svg")
+  // console.log(element.src)
+  // console.log(imagePath);
+  // console.log("star off", element.src == "./icons/star.svg")
+  // console.log("active star", element.src == "./icons/star-active.svg")
   //toggle hidden class on star icon to be active or inactive;
   var activeStarImage = `${imagePath}icons/star-active.svg`
   var inactiveStarImage = `${imagePath}icons/star.svg`
@@ -114,42 +110,42 @@ function toggleStars(element) {
     }
 }
 function updateDisplayIdeas(idea){
-  displayedIdeas.forEach(function(ideaInDisplayedIdeas,i){
-    if(ideaInDisplayedIdeas.id === idea.id){
+  displayedIdeas.forEach(function(ideaInDisplayedIdeas,i) {
+    if (ideaInDisplayedIdeas.id === idea.id){
       displayedIdeas[i].title = idea.title;
       displayedIdeas[i].body = idea.body;
       displayedIdeas[i].star = idea.star;
     }
   })
 }
-function saveDisplayedIdeasToLocalStorage(){
+function saveDisplayedIdeasToLocalStorage() {
   var displayedIdeasString = JSON.stringify(displayedIdeas)
   localStorage.setItem('displayedIdeas',displayedIdeasString)
 }
 
-function retrieveDisplayIdeasfromLocalStorage(){
-var displayIdeasInLocalStorage = JSON.parse(localStorage.getItem('displayedIdeas'))
-if(displayedIdeas.length > 0){
-  displayedIdeas = displayedIdeas.concat(displayIdeasInLocalStorage)
+function retrieveDisplayIdeasfromLocalStorage() {
+  var displayIdeasInLocalStorage = JSON.parse(localStorage.getItem('displayedIdeas'))
+    if (displayedIdeas.length > 0) {
+      displayedIdeas = displayedIdeas.concat(displayIdeasInLocalStorage)
 
-}else{
-  displayedIdeas = displayIdeasInLocalStorage
-console.log('when changed',displayedIdeas)
+    }else{
+      displayedIdeas = displayIdeasInLocalStorage
+      console.log('when changed',displayedIdeas)
+    }
 }
 
-}
-function deleteFromDataModel(id){
+function deleteFromDataModel(id) {
   console.log(displayedIdeas[0])
   console.log(localStorage)
   console.log(displayedIdeas[0].id)
-  for(var i = 0; i<displayedIdeas.length; i++){
-    if(displayedIdeas[i].id == Number(id)){
-      displayedIdeas.splice(i,1)
+  for (var i = 0; i<displayedIdeas.length; i++) {
+    if (displayedIdeas[i].id == Number(id)) {
+      displayedIdeas.splice(i, 1)
     }
   }
   console.log(displayedIdeas)
   saveDisplayedIdeasToLocalStorage()
 }
-function saveToDataModel(idea) {
-  displayedIdeas.push(idea)
+  function saveToDataModel(idea) {
+    displayedIdeas.push(idea)
 }
