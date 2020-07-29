@@ -7,18 +7,20 @@ var deleteButton = document.querySelector(".delete-icon");
 var favoritedStar = document.querySelectorAll(".star-active");
 var unfavoriteStar = document.querySelectorAll(".star-inactive");
 var searchBar = document.querySelector(".search-ideas");
+var showStarButton = document.querySelector(".show-ideas-button")
 
 
-function filterSearchBar() {
-  var searchInputValue = searchBar.value.toUpperCase()
-  var toDisplay = displayedIdeas.filter(function(object) {
-    if (object.title.toUpperCase().includes(searchInputValue) || object.body.toUpperCase().includes(searchInputValue)) {
-      return object;
-    }
-  })
-  displayIdeas(toDisplay)
-  };
+showStarButton.addEventListener('click',function(){
+  if(showStarButton.innerText === 'Show Starred Ideas'){
+    filterStar()
+    showStarButton.innerText = 'Show All Ideas'
+  }else{
+    displayIdeas(displayedIdeas)
+    showStarButton.innerText = 'Show Starred Ideas'
+  }
 
+
+})
 searchBar.addEventListener("keyup", filterSearchBar);
 
 ideaForm.addEventListener("keyup", checkUserInput);
@@ -175,6 +177,26 @@ function figureStarSource(idea){
   else{
     return `${imagePath}icons/star.svg`
   }
+}
+  function filterSearchBar() {
+    var searchInputValue = searchBar.value.toUpperCase()
+    var toDisplay = displayedIdeas.filter(function(object) {
+      if (object.title.toUpperCase().includes(searchInputValue) || object.body.toUpperCase().includes(searchInputValue)) {
+        return object;
+      }
+    })
+    displayIdeas(toDisplay)
+    };
+
+    function filterStar(){
+      var toDisplay = displayedIdeas.filter(function(object) {
+        if (object.star) {
+          return object;
+        }
+      })
+
+      displayIdeas(toDisplay)
+    }
   //toggle hidden class on star icon to be active or inactive;
   // var activeStarImage = `${imagePath}icons/star-active.svg`
   // var inactiveStarImage = `${imagePath}icons/star.svg`
@@ -185,7 +207,6 @@ function figureStarSource(idea){
   //       element.src = inactiveStarImage
   //       element.dataset.id = ''
   //   }
-}
 // function filterDisplayedIdeasArray(){
 //
 // }
