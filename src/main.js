@@ -80,7 +80,7 @@ function clearFields() {
 }
 
 function toggleStars(element) {
-  var imagePath = window.location.href;
+  var imagePath = window.location.href+'/';
   console.log(element.src)
   console.log(imagePath);
   console.log("star off", element.src == "./icons/star.svg")

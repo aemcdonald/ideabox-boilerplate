@@ -254,9 +254,9 @@ textarea {
 
 }
 
-.idea-cards{
+/* .idea-cards{
 background-color: white;
-}
+} */
 
 .idea-cards div {
   color: #1F1F3D;
@@ -320,16 +320,43 @@ background-color: white;
     flex-direction: column;
     resize:both;
   }
+
+.starred-ideas {
+  display: inherit;
+  background: #1F1F3D;
+  border-top: none;
+  position: relative;
+  z-index: 2;
+  font-size: 18px;
+}
+
+.overlay {
+  background-color: black;
+  opacity: 70%;
+  position: fixed;
+  display: block;
+  outline: 3px solid red;
+  width: 100%;
+  height: 100%;
+}
+
+.filter-ideas {
+  text-align: left;
+  padding-left: 5%;
+
+}
+
 .idea-form {
   padding: 3%;
 }
-/* not entirely sure tbh? */
+
 
 .idea-cards {
   width: 90%;
 }
 
   .idea-cards div {
+    z-index: -1;
     max-width: 100%;
     width: 100%;
   }
@@ -345,7 +372,7 @@ background-color: white;
 
   .header-text {
     font-size: 18px;
-    padding: 10px;
+    padding: 10px 10px 0px 10px;
   }
 
   .hide{
@@ -360,7 +387,7 @@ background-color: white;
   }
 
   .hidden {
-    display: none; !important;
+    display: inherit; !important;
   }
 
   .menu {
