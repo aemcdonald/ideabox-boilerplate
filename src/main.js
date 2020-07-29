@@ -31,7 +31,8 @@ ideaCardsArea.addEventListener("click", function() {
   if(event.target.classList.contains('star')){
       var section = getGreatGrandpaElement(event.target)
     var idea = toggleStars(section.dataset['id'])
-    displayIdeas(idea)
+    updateDisplayIdeas(idea)
+    updateDisplayIdeas()
 
   }
   if(event.target.classList.contains('delete-icon')){
@@ -170,6 +171,6 @@ function figureStarSource(idea){
   //       element.dataset.id = ''
   //   }
 }
-function filterDisplayedIdeasArray(){
-  
-}
+// function filterDisplayedIdeasArray(){
+//
+// }
