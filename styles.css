@@ -316,72 +316,12 @@ background-color: white;
 
 /*=== media queries ===*/
 @media only screen and (max-width: 950px) {
-  body {
-    flex-direction: column;
-    resize:both;
-  }
-.idea-form {
-  padding: 3%;
-}
+    body {
+      flex-direction: column;
+      resize:both;
+    }
 
-
-.idea-cards {
-  width: 90%;
-}
-
-  .idea-cards div {
-    max-width: 100%;
-    width: 100%;
-    z-index: -1;
-  }
-
-  .starred-ideas {
-  display: inherit;
-  background: #1F1F3D;
-  border-top: none;
-  position: relative;
-  z-index: 2;
-  font-size: 18px;
-}
-
-.overlay {
-  background-color: black;
-  opacity: 70%;
-  position: fixed;
-  display: block;
-  outline: 3px solid red;
-  width: 100%;
-  height: 100%;
-}
-
-.filter-ideas {
-  text-align: left;
-  padding-left: 5%;
-}
-
-  .idea-cards-main-area {
-    display: grid;
-    grid-template-rows: fit-content(100%);
-    padding: 3%;
-  }
-
-  .header-text {
-    font-size: 18px;
-    padding: 10px 10px 0px 10px;
-
-    position: relative;
-  }
-
-  .hide{
-    display: inherit;
-  }
-
-  .header-text-image{
-    position: absolute;
-    left: 5px;
-    top:10px;
-    bottom: 10px;
-  }
+/* MENU SECTION  */
 
   .hidden {
     display: inherit; !important;
@@ -395,7 +335,70 @@ background-color: white;
     z-index: 2;
   }
 
+  .header-text-image {
+    position: absolute;
+    left: 5px;
+    top:10px;
+    bottom: 10px;
+  }
+
+  .header-text {
+    font-size: 18px;
+    padding: 10px 10px 0px 10px;
+    position: relative;
+  }
+
+  .hide {
+    display: inherit;
+  }
+
+  /* USER FORM */
+
+  .filter-ideas {
+    text-align: left;
+    padding-left: 5%;
+  }
+
+  .starred-ideas {
+    display: inherit;
+    background: #1F1F3D;
+    border-top: none;
+    position: relative;
+    z-index: 2;
+    font-size: 18px;
+  }
+
+  .overlay {
+    background-color: black;
+    opacity: 70%;
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
   .idea-form {
+    padding: 3%;
     flex-grow: 1;
   }
+
+
+  /* IDEA CARDS */
+
+  .idea-cards {
+    width: 90%;
+  }
+
+  .idea-cards div {
+    max-width: 100%;
+    width: 100%;
+    z-index: -1;
+  }
+
+  .idea-cards-main-area {
+    display: grid;
+    grid-template-rows: fit-content(100%);
+    padding: 3%;
+  }
+
 }
