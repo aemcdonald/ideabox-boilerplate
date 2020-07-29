@@ -162,3 +162,30 @@ function deleteFromDataModel(id) {
   function saveToDataModel(idea) {
     displayedIdeas.push(idea)
 }
+
+function getGreatGrandpaElement(event){
+  return event.parentElement.parentElement.parentElement
+}
+function figureStarSource(idea){
+  var imagePath = window.location.href;
+
+  if(idea.star){
+    return `${imagePath}icons/star-active.svg`
+  }
+  else{
+    return `${imagePath}icons/star.svg`
+  }
+  //toggle hidden class on star icon to be active or inactive;
+  // var activeStarImage = `${imagePath}icons/star-active.svg`
+  // var inactiveStarImage = `${imagePath}icons/star.svg`
+  // if (element.src == inactiveStarImage) {
+  //   element.src = activeStarImage
+  //   element.dataset.id = 'favorite'
+  //  } else {
+  //       element.src = inactiveStarImage
+  //       element.dataset.id = ''
+  //   }
+}
+// function filterDisplayedIdeasArray(){
+//
+// }
