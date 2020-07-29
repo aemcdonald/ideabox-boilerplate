@@ -7,10 +7,25 @@ var deleteButton = document.querySelector(".delete-icon");
 var favoritedStar = document.querySelectorAll(".star-active");
 var unfavoriteStar = document.querySelectorAll(".star-inactive");
 
+//search bar code
+var searchBar = document.querySelector(".search-ideas");
+
+searchBar.addEventListener("keyup", filterSearchBar);
+
+function filterSearchBar() {
+  var searchInputValue = searchBar.value.toUpperCase()
+  var toDisplay = displayedIdeas.filter(function(object) {
+    if (object.title.toUpperCase().includes(searchInputValue) || object.body.toUpperCase().includes(searchInputValue)) {
+      return object;
+    }
+  })
+  displayIdeas(toDisplay)
+  };
+
 saveButton.disabled = true; //need to add class in CSS to change appearance
 saveButton.addEventListener("click", function(){
   var currentIdea = createIdeas();
-  displayIdeas(currentIdea);
+  displayIdeas(displayedIdeas)
   clearFields();
 });
 window.addEventListener('load', function(){
@@ -20,9 +35,9 @@ if(localStorage.length === 0){
 console.log(localStorage)
   retrieveDisplayIdeasfromLocalStorage()
 
-  for(var i = 0; i<displayedIdeas.length; i++){
-    displayIdeas(displayedIdeas[i])
-  }
+  // for(var i = 0; i<displayedIdeas.length; i++){
+    displayIdeas(displayedIdeas)
+  // }
 })
 
 ideaForm.addEventListener("keyup", checkUserInput);
@@ -52,27 +67,31 @@ function createIdeas() {
   return ideaInstance
 }
 
-function displayIdeas(idea) {
-  var section = document.createElement("section");
-  section.classList.add("idea-cards");
-  section.dataset.id = idea.id
+function displayIdeas(displayedIdeasArray) {
+  ideaCardsArea.innerHTML = "";
+  for (var i = 0; i < displayedIdeasArray.length; i++) {
+    displayedIdeasArray[i]
+    var section = document.createElement("section");
+    section.classList.add("idea-cards");
+    section.dataset.id = displayedIdeasArray[i].id
   //add section.id.add to select by id for deletion
-  section.innerHTML = `<div>
+    section.innerHTML = `<div>
   <p class="idea-card-top">
     <img src="icons/star.svg" class="star " width="30" height="auto">
     <img src="icons/delete.svg" class="delete-icon" width="30" height="auto">
   </p>
   <section class="idea-card-body">
-    <h1 class="idea-card-title">${idea.title}</h1>
+    <h1 class="idea-card-title">${displayedIdeasArray[i].title}</h1>
     <section class="idea-card-text">
-      <p>${idea.body}</p>
+      <p>${displayedIdeasArray[i].body}</p>
      </section>
       <p class="idea-card-comment"><img src="icons/comment.svg" width="30" height="auto">Comment</p>
-    </a>
     </section>
   </div>`
   ideaCardsArea.appendChild(section);
+  }
 }
+
 function clearFields() {
   event.preventDefault();
   titleInput.value = "";
