@@ -8,7 +8,9 @@ var favoritedStar = document.querySelectorAll(".star-active");
 var unfavoriteStar = document.querySelectorAll(".star-inactive");
 var searchBar = document.querySelector(".search-ideas");
 var showStarButton = document.querySelector(".show-ideas-button");
-
+var menu = document.querySelector('.menu');
+var hidden = document.querySelectorAll('.hidden');
+var overlay = document.querySelector('.overlay');
 
 showStarButton.addEventListener('click',function() {
   if (showStarButton.innerText === 'Show Starred Ideas') {
@@ -18,9 +20,14 @@ showStarButton.addEventListener('click',function() {
     displayIdeas(displayedIdeas)
     showStarButton.innerText = 'Show Starred Ideas'
   }
-
-
 })
+
+menu.addEventListener("click", function() {
+  if (event.target.classList.contains('hamburger') || event.target.classList.contains('delete-button')) {
+    toggleHidden(event)
+  }
+})
+
 searchBar.addEventListener("keyup", filterSearchBar);
 
 ideaForm.addEventListener("keyup", checkUserInput);
@@ -34,7 +41,7 @@ saveButton.addEventListener("click", function() {
 saveButton.disabled = true;
 
 window.addEventListener('load', function() {
-  if(localStorage.length === 0) {
+  if (localStorage.length === 0) {
     return
   }
   retrieveDisplayIdeasfromLocalStorage()
@@ -74,19 +81,15 @@ function displayIdeas(displayedIdeasArray) {
   ideaCardsArea.innerHTML = "";
   var imagePath = window.location.href;
   var starImage;
-
   for (var i = 0; i < displayedIdeasArray.length; i++) {
     if(displayedIdeasArray[i].star) {
       starImage =`${imagePath}icons/star-active.svg`
-
     } else {
     starImage = `${imagePath}icons/star.svg`
     }
     var section = document.createElement("section");
     section.classList.add("idea-cards");
     section.dataset.id = displayedIdeasArray[i].id
-
-  //add section.id.add to select by id for deletion
     section.innerHTML = `<div>
   <p class="idea-card-top">
     <img src="${starImage}" class="star " width="30" height="auto">
@@ -112,13 +115,11 @@ function clearFields() {
 }
 
 function toggleStars(id) {
-
   var imagePath = window.location.href;
-
   for (var i = 0; i<displayedIdeas.length; i++) {
     if (displayedIdeas[i].id == Number(id) &&   displayedIdeas[i].star) {
       displayedIdeas[i].star = false
-    }else if(displayedIdeas[i].id == Number(id) && !displayedIdeas[i].star) {
+    } else if (displayedIdeas[i].id == Number(id) && !displayedIdeas[i].star) {
       displayedIdeas[i].star = true
     }
   }
@@ -143,7 +144,6 @@ function retrieveDisplayIdeasfromLocalStorage() {
   var displayIdeasInLocalStorage = JSON.parse(localStorage.getItem('displayedIdeas'))
     if (displayedIdeas.length > 0) {
       displayedIdeas = displayedIdeas.concat(displayIdeasInLocalStorage)
-
     } else {
       displayedIdeas = displayIdeasInLocalStorage
       console.log('when changed',displayedIdeas)
@@ -169,7 +169,7 @@ function getGreatGrandpaElement(event) {
 
 function figureStarSource(idea) {
   var imagePath = window.location.href;
-  if(idea.star) {
+  if (idea.star) {
     return `${imagePath}icons/star-active.svg`
   }
   else {
@@ -185,7 +185,8 @@ function figureStarSource(idea) {
       }
     })
     displayIdeas(toDisplay)
-    };
+    }
+
     function filterStar() {
       var toDisplay = displayedIdeas.filter(function(object) {
         if (object.star) {
@@ -193,4 +194,42 @@ function figureStarSource(idea) {
         }
       })
       displayIdeas(toDisplay)
+    }
+
+    function toggleHidden(event) {
+      var imagePath = window.location.href;
+      if (event.target.classList.contains('hamburger')) {
+        turnBurgerToDelete(imagePath);
+      } else {
+        turnDeleteToBurger(imagePath);
+      }
+    }
+
+    function turnBurgerToDelete(imagePath) {
+      removeFromClassList(event.target, 'hamburger');
+      event.target.classList.add('delete-button');
+      event.target.src = `${imagePath}icons/menu-close.svg`
+      removeFromClassList(event.target, 'hidden');
+      hidden.forEach(function(element) {
+        removeFromClassList(element, 'hidden');
+      })
+    }
+
+    function removeFromClassList(element, item) {
+      element.classList.remove(item);
+    }
+
+    function turnDeleteToBurger(imagePath) {
+      removeFromClassList(event.target, 'delete-button');
+      addToClassList(event.target, 'hamburger');
+      event.target.src = `${imagePath}icons/menu.svg`
+      removeFromClassList(event.target, 'hidden');
+      hidden.forEach(function(element) {
+        addToClassList(element, 'hidden');
+      })
+        addToClassList(overlay, 'hidden');
+    }
+
+    function addToClassList(element, item) {
+      element.classList.add(item)
     }
