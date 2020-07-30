@@ -9,8 +9,11 @@ Project Manager: Casey
 ## Links  
 
 Github Pages: https://aemcdonald.github.io/ideabox-boilerplate/
+
 Our Project Repository: https://github.com/aemcdonald/ideabox-boilerplate
+
 Original Project Repository: https://github.com/turingschool-examples/ideabox-boilerplate
+
 DTR Document: https://docs.google.com/document/d/1miHx5OQM_BdMtzkC8PTN8bepBLC5apaYLPOKUaRwWNc/edit?usp=sharing
 
 ## Project Overview
@@ -63,6 +66,8 @@ Before creating our application, we planned out the page design using a wirefram
 
 Here is a view of our **desktop layout** upon deployment. The save button remains disabled until text is added to both input fields, and the cursor changes, in order to show the user that the option is not available when the text fields are empty. During this phase, **we applied feedback from a mentor** in order to make the layout more accurate according to the given comp. This details of this feedback can be seen in branch `# 17 kj-mentor-code-review`.
 (insert screenshot of desktop view-with disabled save button-no text input)
+![disabled button]https://files.slack.com/files-pri/T029P2S9M-F018P37ADBJ/screen_shot_2020-07-29_at_8.26.51_pm.png
+
 
 Here is the view of the **mobile layout** upon deployment.
 (insert screenshot of mobile view)
