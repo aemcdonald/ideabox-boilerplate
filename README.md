@@ -66,7 +66,7 @@ Before creating our application, we planned out the page design using a wirefram
 
 Here is a view of our **desktop layout** upon deployment. The save button remains disabled until text is added to both input fields, and the cursor changes, in order to show the user that the option is not available when the text fields are empty. During this phase, **we applied feedback from a mentor** in order to make the layout more accurate according to the given comp. This details of this feedback can be seen in branch `# 17 kj-mentor-code-review`.
 (insert screenshot of desktop view-with disabled save button-no text input)
-![disabled button]https://files.slack.com/files-pri/T029P2S9M-F018P37ADBJ/screen_shot_2020-07-29_at_8.26.51_pm.png
+![img width="1024" alt="Screen Shot 2020-07-29 at 8 26 51 PM](src="https://user-images.githubusercontent.com/65988644/88875242-2613d400-d1de-11ea-8668-7d2aabb9b3a1.png")
 
 
 Here is the view of the **mobile layout** upon deployment.
