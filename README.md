@@ -32,8 +32,11 @@ Here are the learning goals for this project:
 ## Technologies Used
 
 **Application Building:** HTML, JavaScript, CSS
+
 **Communication:** Zoom, Screen, Google Meets, Slack
+
 **Storage and Deployment:** Github
+
 **Documentation:** Google Docs, Invision App
 
 ## Challenges
@@ -42,6 +45,7 @@ Here are the learning goals for this project:
 * Refactoring dry code
 * Matching the given static comp
 * Learning to implement data storage
+* Adding images to README.md
 
 ## Wins
 
@@ -62,20 +66,19 @@ We were provided with a comp to mimic, as well as specific colors and some code 
 ![Desktop Layout](https://frontend.turing.io/projects/module-1/assets/ideabox-group/desktop.jpg)
 
 Before creating our application, we planned out the page design using a wireframe.
-![](https://files.slack.com/files-pri/T029P2S9M-F017XT578JH/screen_shot_2020-07-29_at_8.56.06_pm.png)
-
-![](https://files.slack.com/files-pri/T029P2S9M-F017JG9HCVD/screen_shot_2020-07-29_at_8.56.36_pm.png)
+<img width="1080" alt="screen_shot_2020-07-29_at_8 56 06_pm" src="https://user-images.githubusercontent.com/65988644/88877139-139b9980-d1e2-11ea-86d3-29259d2ed2c4.png">
+<img width="1080" alt="screen_shot_2020-07-29_at_8 56 36_pm" src="https://user-images.githubusercontent.com/65988644/88877150-16968a00-d1e2-11ea-8d19-bc8e371b43a8.png">
 
 Here is a view of our **desktop layout** upon deployment. The save button remains disabled until text is added to both input fields, and the cursor changes, in order to show the user that the option is not available when the text fields are empty. During this phase, **we applied feedback from a mentor** in order to make the layout more accurate according to the given comp. This details of this feedback can be seen in branch `# 17 kj-mentor-code-review`.
 <img width="1024" alt="Screen Shot 2020-07-29 at 8 26 51 PM" src="https://user-images.githubusercontent.com/65988644/88875476-90c50f80-d1de-11ea-8850-d8d4b562631e.png">
 
 
 Here is the view of the **mobile layout** upon deployment.
-![](https://files.slack.com/files-pri/T029P2S9M-F017SGWJ7N2/screen_shot_2020-07-29_at_9.05.32_pm.png)
+![Screen Shot 2020-07-29 at 9 29 47 PM](https://user-images.githubusercontent.com/65988644/88877413-a1778480-d1e2-11ea-8f75-47018191b048.png)
 
 We also used an online application to visually plan out our **data model**. This came in handy whenever discussing and implementing changes.
 
-![](https://files.slack.com/files-pri/T029P2S9M-F017ZEQP811/screen_shot_2020-07-29_at_8.55.15_pm.png)
+<img width="1080" alt="data-model" src="https://user-images.githubusercontent.com/65988644/88877128-0e3e4f00-d1e2-11ea-9e91-2107767dda6b.png">
 
 The user can type text into the title and body, and select the save button to make their idea into a visible card. When the page is **refreshed**, the data will still be stored, so the created cards will remain on the page.
 ![Screen Shot 2020-07-29 at 9 11 08 PM](https://user-images.githubusercontent.com/65988644/88876217-07164180-d1e0-11ea-82a6-363ee1f57d99.png)
