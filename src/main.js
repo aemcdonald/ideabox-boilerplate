@@ -279,8 +279,9 @@ function filterStar() {
   })
   displayIdeas(toDisplay)
 }
-//this function assigns the variable toDisplay (a new array) to have the value of the filtered displayedIdeas array
-//
+//this function creates a new array called to display
+//assigning the variable a value of a new array
+//that contains filtered objects with the star property of true
 
 function toggleHidden(event) {
   var imagePath = window.location.href;
@@ -290,6 +291,10 @@ function toggleHidden(event) {
     turnDeleteToBurger(imagePath);
   }
 }
+//we are passing the image path & using it as a parameter to toggle
+//if the event target contains 'hamburger'
+  //call the turnBurgertoDelete function
+//the hidden of the hamburger or the delte element
 
 function turnBurgerToDelete(imagePath) {
   removeFromClassList(event.target, 'hamburger');
@@ -300,10 +305,17 @@ function turnBurgerToDelete(imagePath) {
     removeFromClassList(element, 'hidden');
   })
 }
+//passing parameter imagePath
+  //removing 'hamburger' from classlist
+  //adding 'delete-button' to the classlist
+//removing classlist of 'hidden' from the event targetted
+//for each element that contains the hidden property, we're removing the 'hidden property from that element'
 
 function removeFromClassList(element, item) {
   element.classList.remove(item);
 }
+//remove the item that was passed from the element that was passed into the function
+  //hidden is an array & we are removing the class of 'hidden' from every element's classlist in that array
 
 function turnDeleteToBurger(imagePath) {
   removeFromClassList(event.target, 'delete-button');
@@ -315,7 +327,17 @@ function turnDeleteToBurger(imagePath) {
   })
     addToClassList(overlay, 'hidden');
 }
+//room for refactor: could combine this function & turnBurgerToDelete by being selective about the parameters
+  //removing 'delete button' from the classlist on the event target
+  //adding 'hamburger' to the classlist on the event target
+//reassign the image src of the target to the hamburger icon
+  //removing the classlist of 'hidden' from the event target
+  //for each element in the hidden array we are adding a classlist of hidden
+    //& adding hidden to the classlist of the element overlay
 
 function addToClassList(element, item) {
   element.classList.add(item)
 }
+//what's happening when we call the function:
+  //adding the classlist of hidden to every element in the hidden Array
+  //also adding the classlist of 'hidden' to the overlay element in the hidden array
