@@ -68,7 +68,7 @@ Before creating our application, we planned out the page design using a wirefram
 <img width="1080" alt="screen_shot_2020-07-29_at_8 56 06_pm" src="https://user-images.githubusercontent.com/65988644/88877139-139b9980-d1e2-11ea-86d3-29259d2ed2c4.png">
 <img width="1080" alt="screen_shot_2020-07-29_at_8 56 36_pm" src="https://user-images.githubusercontent.com/65988644/88877150-16968a00-d1e2-11ea-8d19-bc8e371b43a8.png">
 
-Here is a view of our **desktop layout** upon deployment. The save button remains disabled until text is added to both input fields, and the cursor changes, in order to show the user that the option is not available when the text fields are empty. During this phase, **we applied feedback from a mentor** in order to make the layout more accurate according to the given comp. This details of this feedback can be seen in branch `# 17 kj-mentor-code-review`.
+Here is a view of our **desktop layout** upon deployment. The save button remains disabled until text is added to both input fields, and the cursor changes, in order to show the user that the option is not available when the text fields are empty. During this phase, **we applied feedback from a mentor** in order to make the layout more accurate according to the given comp. This details of this feedback can be seen in branch `# 17 kj-mentor-code-review`. We also decided to add a scroll function to the card so that longer amounts of texts can be read easily.
 <img width="1024" alt="Screen Shot 2020-07-29 at 8 26 51 PM" src="https://user-images.githubusercontent.com/65988644/88875476-90c50f80-d1de-11ea-8850-d8d4b562631e.png">
 
 
