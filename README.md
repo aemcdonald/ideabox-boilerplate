@@ -73,6 +73,7 @@ Here is a view of our **desktop layout** upon deployment. The save button remain
 
 
 Here is the view of the **mobile layout** upon deployment.
+
 ![Screen Shot 2020-07-29 at 9 29 47 PM](https://user-images.githubusercontent.com/65988644/88877413-a1778480-d1e2-11ea-8f75-47018191b048.png)
 
 We also used an online application to visually plan out our **data model**. This came in handy whenever discussing and implementing changes.
