@@ -279,6 +279,8 @@ function filterStar() {
   })
   displayIdeas(toDisplay)
 }
+//this function assigns the variable toDisplay (a new array) to have the value of the filtered displayedIdeas array
+//
 
 function toggleHidden(event) {
   var imagePath = window.location.href;
