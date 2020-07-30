@@ -11,6 +11,7 @@ var showStarButton = document.querySelector(".show-ideas-button");
 var menu = document.querySelector('.menu');
 var hidden = document.querySelectorAll('.hidden');
 var overlay = document.querySelector('.overlay');
+//query selectors accessing html elements within another documenmt (by class in our case)
 
 showStarButton.addEventListener('click',function() {
   if (showStarButton.innerText === 'Show Starred Ideas') {
@@ -21,24 +22,42 @@ showStarButton.addEventListener('click',function() {
     showStarButton.innerText = 'Show Starred Ideas'
   }
 })
+//this event listener fires a function on a click based on the innerText of the click
+  //if innertext is 'Show Starred Ideas'
+    //execute filterStar functions
+    //& change the innerText of show star button to 'Show All Ideas'
+  //if innertext is 'Show All Ideas'
+    //execute displayIdeas function & pass displayedIdeas Array which shows every idea card
+    //changes the innertext of the show star button back
+
 
 menu.addEventListener("click", function() {
   if (event.target.classList.contains('hamburger') || event.target.classList.contains('delete-button')) {
     toggleHidden(event)
   }
 })
+//this event listener is located on the parent element & fires based on the location of a click in its child elements
+  //if the click occurs on a child element that contains 'hamburger' or 'delete-button'
+    //then the child element that was clicked on will call the toggleHidden function using the click event as the parameter
+
 
 searchBar.addEventListener("keyup", filterSearchBar);
+//this event listener fires filterSearchBar function when a keyup event happens in the searchBar
 
 ideaForm.addEventListener("keyup", checkUserInput);
+//this event listener fires checkUserInput function when the keyup event happens in the ideaForm
 
 saveButton.addEventListener("click", function() {
   var currentIdea = createIdeas();
   displayIdeas(displayedIdeas);
   clearFields();
 });
+//this event listener fires the displayIdeas & clearFields functions when a click happens on the saveButton
+  //declaring the currentIdea variable here is an opportunity for refactor.
+  //It does not serve a purpose since we changed a later function to display the entire ideas array instead of the currentIdea
 
 saveButton.disabled = true;
+//this defaults the saveButton to true
 
 window.addEventListener('load', function() {
   if (localStorage.length === 0) {
@@ -47,6 +66,12 @@ window.addEventListener('load', function() {
   retrieveDisplayIdeasfromLocalStorage()
     displayIdeas(displayedIdeas)
 })
+//this event listener fires on the page load of the window
+  //if local storage is empty the function does nothing
+  //if anything is in local storage
+    //retrieveDisplayIdeasfromLocalStorage & displayIdeas functions execute
+      //retrieveDisplayIdeasfromLocalStorage will put anything in local storage into our displayed ideas array
+      //displayIdeas will update the DOM & display the idea retrieved from local storage & display on the page
 
 ideaCardsArea.addEventListener("click", function() {
   if (event.target.classList.contains('star')) {
@@ -59,8 +84,17 @@ ideaCardsArea.addEventListener("click", function() {
     displayIdeas(displayedIdeas)
   }
 });
+//this event listener fires based on the location of the click
+  //if that element contains 'star'
+    //the toggle star function will fire up on the targetted id of the event bubble
+    //saveDisplayedIdeasToLocalStorage function will run (saving it to local storage based on the value of the star)
+    //displayingIdeas will update the DOM & display the idea retrieved from local & show it on the page
+  //if that element contains 'delete-icon'
+    //deleteFromDataModel function run on the targetted id of the event bubble & remove the entire idea card from the data model
+    //displayIdeas function will update the DOM & only show the ideas that are still saved
 
 var displayedIdeas = [];
+//this is our data model
 
 function checkUserInput() {
   if (titleInput.value !== "" && bodyInput.value !== "") {
@@ -69,6 +103,10 @@ function checkUserInput() {
     saveButton.disabled = true;
   }
 }
+//this function checks user input boxes for characters
+  //if the title text box is not empty AND the body text box is not empty
+    //the save button will no longer be disabled
+  //otherwise the save button will remain disabled
 
 function createIdeas() {
   var ideaInstance = new Idea(titleInput.value, bodyInput.value, false);
@@ -76,6 +114,11 @@ function createIdeas() {
   saveDisplayedIdeasToLocalStorage()
   return ideaInstance
 }
+//this function declares an ideaInstance variable
+//that instantiates a new instance of our idea class with title, body & star value of false
+//it then saves that idea instance to our data saveToDataModel
+//and saves it to local localStorage
+//refactor opportunity: we do not need to return the ideaInstance
 
 function displayIdeas(displayedIdeasArray) {
   ideaCardsArea.innerHTML = "";
@@ -106,6 +149,15 @@ function displayIdeas(displayedIdeasArray) {
   ideaCardsArea.appendChild(section);
   }
 }
+//this function reassigns the ideaCardsArea inner html to an empty string
+//declares a variable that makes the image source accessible based on the user's computer
+//it loops through the data model which is the displayedIdeasArray
+  //if an array index star property is equal to true
+    //then change the star property to the active star image
+  //otherwise change the star image to be inactive star imagePath
+
+//add an html section with its content based on the properties of the index of our loop
+
 
 function clearFields() {
   event.preventDefault();
@@ -113,6 +165,10 @@ function clearFields() {
   bodyInput.value = "";
   saveButton.disabled = true;
 }
+//event.preventDefault prevents the page from reloading on itself
+//we are clearing the title & body text boxes & disabling the saveButton again
+//this function is called when the save button is clicked
+
 
 function toggleStars(id) {
   var imagePath = window.location.href;
@@ -124,6 +180,12 @@ function toggleStars(id) {
     }
   }
 }
+//this function iterates through displayedIdeasArray
+  //if the ID of that index is loosely equal to the ID parameter AND if it has a star value of true
+    //then the star property value will be reassigned to false
+  //if it doesn't have the star property value of true
+    //then the star property value will be reassigned to true
+//refactor opportunity: we do not need the imagePath variable
 
 function updateDisplayIdeas(idea) {
   displayedIdeas.forEach(function(ideaInDisplayedIdeas,i) {
@@ -134,11 +196,15 @@ function updateDisplayIdeas(idea) {
     }
   })
 }
+//initially this was updating our data model with the title, body & star
+//refactor opportunity: we may no longer need this function
 
 function saveDisplayedIdeasToLocalStorage() {
   var displayedIdeasString = JSON.stringify(displayedIdeas)
   localStorage.setItem('displayedIdeas',displayedIdeasString)
 }
+//this function is turning the datamodel into a string
+//to be stored in local storage
 
 function retrieveDisplayIdeasfromLocalStorage() {
   var displayIdeasInLocalStorage = JSON.parse(localStorage.getItem('displayedIdeas'))
@@ -148,6 +214,9 @@ function retrieveDisplayIdeasfromLocalStorage() {
       displayedIdeas = displayIdeasInLocalStorage
     }
 }
+//this function is retrieving the data from local storage & converting it from a string back to an array
+  //if displayed ideas array is not empty then concatenate the array from local storage to the data model Array
+  //else reassign displayedIdeasArray to be equal to the displayIdeasInLocalStorage array
 
 function deleteFromDataModel(id) {
   for (var i = 0; i<displayedIdeas.length; i++) {
@@ -157,13 +226,23 @@ function deleteFromDataModel(id) {
   }
   saveDisplayedIdeasToLocalStorage()
 }
-  function saveToDataModel(idea) {
+//this function takes an id as a parameter
+  //iterates through the datamodel which is the displayedIdeas array
+    //if the id at that index loosely equal the id argument that's passed
+      //splice that object from the displayed ideas array
+    //save the updated data model displayedideas array to local storage
+
+
+function saveToDataModel(idea) {
     displayedIdeas.push(idea)
-}
+  }
+//this function takes an idea & puts it in our data model (displayed ideas array)
+
 
 function getGreatGrandpaElement(event) {
   return event.parentElement.parentElement.parentElement
 }
+//refactor opportunity: we no longer need this function
 
 function figureStarSource(idea) {
   var imagePath = window.location.href;
@@ -174,60 +253,67 @@ function figureStarSource(idea) {
     return `${imagePath}icons/star.svg`
   }
 }
+//refactor opportunity: we no longer need this function
 
-  function filterSearchBar() {
-    var searchInputValue = searchBar.value.toUpperCase()
-    var toDisplay = displayedIdeas.filter(function(object) {
-      if (object.title.toUpperCase().includes(searchInputValue) || object.body.toUpperCase().includes(searchInputValue)) {
-        return object;
-      }
-    })
-    displayIdeas(toDisplay)
-    }
+function filterSearchBar() {
+var searchInputValue = searchBar.value.toUpperCase()
+var toDisplay = displayedIdeas.filter(function(object) {
+  if (object.title.toUpperCase().includes(searchInputValue) || object.body.toUpperCase().includes(searchInputValue)) {
+    return object;
+  }
+})
+  displayIdeas(toDisplay)
+}
+//declare variable searchInputValue that is assigned to the uppercase of the value in the search bar
+//filter displayedIdeas array based on whether or not title & property value contain the input value
+  //if the uppercase value in the title or body field includes what was typed in the search bar
+    //create a new array based on if the text in the text box includes the title or idea property
+    //then we will return that idea card object
+//we will display the filtered array (displayIdeas)
 
-    function filterStar() {
-      var toDisplay = displayedIdeas.filter(function(object) {
-        if (object.star) {
-          return object;
-        }
-      })
-      displayIdeas(toDisplay)
+function filterStar() {
+  var toDisplay = displayedIdeas.filter(function(object) {
+    if (object.star) {
+      return object;
     }
+  })
+  displayIdeas(toDisplay)
+}
 
-    function toggleHidden(event) {
-      var imagePath = window.location.href;
-      if (event.target.classList.contains('hamburger')) {
-        turnBurgerToDelete(imagePath);
-      } else {
-        turnDeleteToBurger(imagePath);
-      }
-    }
+function toggleHidden(event) {
+  var imagePath = window.location.href;
+  if (event.target.classList.contains('hamburger')) {
+    turnBurgerToDelete(imagePath);
+  } else {
+    turnDeleteToBurger(imagePath);
+  }
+}
 
-    function turnBurgerToDelete(imagePath) {
-      removeFromClassList(event.target, 'hamburger');
-      event.target.classList.add('delete-button');
-      event.target.src = `${imagePath}icons/menu-close.svg`
-      removeFromClassList(event.target, 'hidden');
-      hidden.forEach(function(element) {
-        removeFromClassList(element, 'hidden');
-      })
-    }
+function turnBurgerToDelete(imagePath) {
+  removeFromClassList(event.target, 'hamburger');
+  event.target.classList.add('delete-button');
+  event.target.src = `${imagePath}icons/menu-close.svg`
+  removeFromClassList(event.target, 'hidden');
+  hidden.forEach(function(element) {
+    removeFromClassList(element, 'hidden');
+  })
+}
 
-    function removeFromClassList(element, item) {
-      element.classList.remove(item);
-    }
+function removeFromClassList(element, item) {
+  element.classList.remove(item);
+}
 
-    function turnDeleteToBurger(imagePath) {
-      removeFromClassList(event.target, 'delete-button');
-      addToClassList(event.target, 'hamburger');
-      event.target.src = `${imagePath}icons/menu.svg`
-      removeFromClassList(event.target, 'hidden');
-      hidden.forEach(function(element) {
-        addToClassList(element, 'hidden');
-      })
-        addToClassList(overlay, 'hidden');
-    }
+function turnDeleteToBurger(imagePath) {
+  removeFromClassList(event.target, 'delete-button');
+  addToClassList(event.target, 'hamburger');
+  event.target.src = `${imagePath}icons/menu.svg`
+  removeFromClassList(event.target, 'hidden');
+  hidden.forEach(function(element) {
+    addToClassList(element, 'hidden');
+  })
+    addToClassList(overlay, 'hidden');
+}
 
-    function addToClassList(element, item) {
-      element.classList.add(item)
-    }
+function addToClassList(element, item) {
+  element.classList.add(item)
+}
