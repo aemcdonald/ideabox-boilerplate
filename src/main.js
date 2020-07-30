@@ -146,7 +146,6 @@ function retrieveDisplayIdeasfromLocalStorage() {
       displayedIdeas = displayedIdeas.concat(displayIdeasInLocalStorage)
     } else {
       displayedIdeas = displayIdeasInLocalStorage
-      console.log('when changed',displayedIdeas)
     }
 }
 
@@ -156,7 +155,6 @@ function deleteFromDataModel(id) {
       displayedIdeas.splice(i, 1)
     }
   }
-  console.log(displayedIdeas)
   saveDisplayedIdeasToLocalStorage()
 }
   function saveToDataModel(idea) {
