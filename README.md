@@ -60,7 +60,6 @@ Here are the learning goals for this project:
 ## Screenshots
 
 We were provided with a comp to mimic, as well as specific colors and some code to get us started.
-(insert desktop and mobile view image. I have no idea if the images below will work so let's all find out together i guess)
 ![Mobile Layout](https://frontend.turing.io/projects/module-1/assets/ideabox-group/mobile.jpg)
 ![Mobile Layout with Dropdown](https://frontend.turing.io/projects/module-1/assets/ideabox-group/mobile-dropdown.jpg)
 ![Desktop Layout](https://frontend.turing.io/projects/module-1/assets/ideabox-group/desktop.jpg)
@@ -118,6 +117,10 @@ The **search bar** allows users to filter their idea cards based on certain char
 
 
 ## View Each Group Member's Github Here:
+
 @kathrynljackson
+
 @taylorjohnson141
+
 @aemcdonald
+
